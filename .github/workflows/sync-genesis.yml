@@ -1,0 +1,154 @@
+# Workflow: синхронизирует изменения из BrigChill3000/genesis-station-14 в BrigChill3000/genesis-station-14-testru
+# Что делает:
+# - срабатывает по ручному вызову и по расписанию
+# - клонирует исходный репозиторий в папку source (использует secrets.SYNC_TOKEN для доступа к исходному репозиторию)
+# - копирует содержимое source в рабочую папку (исключая .git и .github/workflows)
+# - если есть изменения — создаёт ветку, пушит в этот репозиторий и открывает Pull Request
+#
+# Важно (настройка перед использованием):
+# 1) В репозитории BrigChill3000/genesis-station-14-testru добавьте secret SYNC_TOKEN,
+#    содержащий PAT (или fine-grained token) с правом чтения/доступа к репозиторию BrigChill3000/genesis-station-14.
+#    Если SYNC_TOKEN отсутствует — workflow завершится с ошибкой.
+# 2) Workflow использует встроенный GITHUB_TOKEN для пуша/создания PR в целевом репозитории.
+#    Вверху заданы permissions, чтобы GITHUB_TOKEN мог пушить и открывать PR.
+#
+name: sync-from-genesis
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      SOURCE_REPO: BrigChill3000/genesis-station-14
+      TARGET_REPO: BrigChill3000/genesis-station-14-testru
+      EXCLUDE_PATTERNS: ".git .github/workflows"
+    steps:
+      - name: "Checkout target repository (this repo)"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: "Require SYNC_TOKEN (for reading source)"
+        run: |
+          if [ -z "${{ secrets.SYNC_TOKEN }}" ]; then
+            echo "ERROR: secrets.SYNC_TOKEN is not set. Create a Personal Access Token (PAT) with repo/read access to ${SOURCE_REPO} and set it as SYNC_TOKEN in repository secrets."
+            exit 1
+          fi
+          echo "SYNC_TOKEN present"
+
+      - name: "Checkout source repository into ./source"
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.SOURCE_REPO }}
+          token: ${{ secrets.SYNC_TOKEN }}
+          path: source
+          fetch-depth: 1
+
+      - name: "Prepare variables"
+        id: prepare
+        run: |
+          set -e
+          SRC_COMMIT=$(git -C source rev-parse --short HEAD)
+          echo "source_commit=$SRC_COMMIT" >> $GITHUB_OUTPUT
+          TIMESTAMP=$(date -u +"%Y%m%d%H%M%S")
+          BRANCH="sync-from-genesis-${SRC_COMMIT}-${TIMESTAMP}"
+          echo "branch=${BRANCH}" >> $GITHUB_OUTPUT
+          echo "Will create branch: ${BRANCH}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: "Copy files from source → target working tree (exclude workflows and .git)"
+        run: |
+          set -e
+          # rsync preserves permissions and can delete removed files in source
+          # исключаем .git и .github/workflows, чтобы не заводить workflow-циклы
+          rsync -a --delete \
+            --exclude='.git' \
+            --exclude='.github/workflows' \
+            source/ ./
+
+          echo "Files copied."
+
+      - name: "Check for changes"
+        id: check_changes
+        run: |
+          set -e
+          # покажем кратко, что изменилось
+          git add -A
+          if git diff --cached --quiet; then
+            echo "no_changes=true" >> $GITHUB_OUTPUT
+            echo "No changes to commit — nothing to do."
+            exit 0
+          else
+            echo "no_changes=false" >> $GITHUB_OUTPUT
+            echo "Changes detected."
+            git reset --mixed # оставим изменения в рабочем каталоге для коммита в отдельной ветке
+          fi
+
+      - name: "Create branch, commit and push"
+        if: steps.check_changes.outputs.no_changes != 'true'
+        run: |
+          set -e
+          BRANCH=${{ steps.prepare.outputs.branch }}
+          SOURCE_COMMIT=${{ steps.prepare.outputs.source_commit }}
+
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "chore(sync): sync from ${SOURCE_REPO} @${SOURCE_COMMIT}" || {
+            echo "Nothing to commit after all"; exit 0;
+          }
+
+          # Push uses built-in GITHUB_TOKEN (permissions: contents: write)
+          git push -u origin "$BRANCH"
+
+      - name: "Create Pull Request"
+        if: steps.check_changes.outputs.no_changes != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          BRANCH=${{ steps.prepare.outputs.branch }}
+          SRC_COMMIT=${{ steps.prepare.outputs.source_commit }}
+          API_URL="https://api.github.com/repos/${{ env.TARGET_REPO }}/pulls"
+
+          # Узнаём дефолтную ветку целевого репозитория
+          DEFAULT_BRANCH=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ env.TARGET_REPO }}" | grep '"default_branch":' | head -1 | cut -d '"' -f4)
+          if [ -z "$DEFAULT_BRANCH" ]; then
+            DEFAULT_BRANCH="main"
+          fi
+
+          TITLE="Sync from ${SOURCE_REPO} @${SRC_COMMIT}"
+          BODY="Автоматическая синхронизация изменений из ${SOURCE_REPO}.\n\nSource commit: ${SRC_COMMIT}\n\nЕсли нужно — обновите описание PR перед мёржем."
+
+          PAYLOAD=$(jq -n --arg t "$TITLE" --arg h "${{ github.repository_owner }}:$BRANCH" --arg b "$DEFAULT_BRANCH" --arg body "$BODY" '{title:$t,head:$h,base:$b,body:$body}')
+
+          # Попытаться создать PR. Если PR уже существует — API вернёт 422 с сообщением.
+          HTTP_CODE=$(curl -s -o /tmp/pr.json -w "%{http_code}" -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" -X POST -d "$PAYLOAD" "$API_URL" || true)
+          if [ "$HTTP_CODE" = "201" ]; then
+            echo "Pull request created."
+            cat /tmp/pr.json
+          else
+            # если 422 — возможно PR уже открыт; попробуем найти открытый PR с этой веткой
+            if [ "$HTTP_CODE" = "422" ]; then
+              echo "PR creation returned 422 — check if a PR already exists for this branch."
+              EXIST_PRS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ env.TARGET_REPO }}/pulls?head=${{ github.repository_owner }}:$BRANCH&state=open")
+              if [ "$EXIST_PRS" = "[]" ]; then
+                echo "No open PR found, but creation failed (422). Response:"
+                cat /tmp/pr.json
+                exit 1
+              else
+                echo "An open PR already exists for branch ${BRANCH}."
+                echo "$EXIST_PRS"
+              fi
+            else
+              echo "Failed to create PR (HTTP $HTTP_CODE). Response:"
+              cat /tmp/pr.json
+              exit 1
+            fi
+          fi

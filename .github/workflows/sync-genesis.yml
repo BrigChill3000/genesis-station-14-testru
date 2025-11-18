@@ -1,16 +1,15 @@
-# Workflow: синхронизирует изменения из BrigChill3000/genesis-station-14 в BrigChill3000/genesis-station-14-testru
-# Что делает:
-# - срабатывает по ручному вызову и по расписанию
-# - клонирует исходный репозиторий в папку source (использует secrets.SYNC_TOKEN для доступа к исходному репозиторию)
-# - копирует содержимое source в рабочую папку (исключая .git и .github/workflows)
-# - если есть изменения — создаёт ветку, пушит в этот репозиторий и открывает Pull Request
+# Синхронизатор: копирует изменения из BrigChill3000/genesis-station-14 → BrigChill3000/genesis-station-14-testru
+# Основные исправления по сравнению с предыдущей версией:
+# - Используем rsync с опциями --delete-after и --delay-updates, чтобы избежать гонки удаления/чтения файлов,
+#   и добавляем простой retry на случай transient "file has vanished".
+# - Исключаем .git и .github/workflows чтобы не плодить workflow-циклы.
+# - Явная проверка наличия токена и прав; использую GITHUB_TOKEN для пуша/создания PR.
+# - Клонирование с fetch-depth:0 для корректного получения всех файлов (если нужно).
 #
-# Важно (настройка перед использованием):
-# 1) В репозитории BrigChill3000/genesis-station-14-testru добавьте secret SYNC_TOKEN,
-#    содержащий PAT (или fine-grained token) с правом чтения/доступа к репозиторию BrigChill3000/genesis-station-14.
-#    Если SYNC_TOKEN отсутствует — workflow завершится с ошибкой.
-# 2) Workflow использует встроенный GITHUB_TOKEN для пуша/создания PR в целевом репозитории.
-#    Вверху заданы permissions, чтобы GITHUB_TOKEN мог пушить и открывать PR.
+# Перед использованием:
+# 1) В репозитории BrigChill3000/genesis-station-14-testru создайте secret SYNC_TOKEN с PAT,
+#    у которого есть доступ для чтения исходного репозитория BrigChill3000/genesis-station-14.
+# 2) Если хотите, чтобы бот автоматически мёржил PR'ы, добавьте логику и права (not included here).
 #
 name: sync-from-genesis
 
@@ -27,128 +26,146 @@ jobs:
     env:
       SOURCE_REPO: BrigChill3000/genesis-station-14
       TARGET_REPO: BrigChill3000/genesis-station-14-testru
-      EXCLUDE_PATTERNS: ".git .github/workflows"
+      TARGET_GIT_URL: https://github.com/BrigChill3000/genesis-station-14-testru.git
+      EXCLUDES: ".git .github/workflows"
     steps:
-      - name: "Checkout target repository (this repo)"
+      - name: Checkout target repository (this repo)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: "Require SYNC_TOKEN (for reading source)"
+      - name: Require SYNC_TOKEN (for reading source)
         run: |
           if [ -z "${{ secrets.SYNC_TOKEN }}" ]; then
-            echo "ERROR: secrets.SYNC_TOKEN is not set. Create a Personal Access Token (PAT) with repo/read access to ${SOURCE_REPO} and set it as SYNC_TOKEN in repository secrets."
+            echo "ERROR: secrets.SYNC_TOKEN is not set. Create a PAT with read access to ${SOURCE_REPO} and add it as SYNC_TOKEN."
             exit 1
           fi
           echo "SYNC_TOKEN present"
 
-      - name: "Checkout source repository into ./source"
+      - name: Checkout source repository into ./source
         uses: actions/checkout@v4
         with:
           repository: ${{ env.SOURCE_REPO }}
           token: ${{ secrets.SYNC_TOKEN }}
           path: source
-          fetch-depth: 1
+          fetch-depth: 0
 
-      - name: "Prepare variables"
+      - name: Prepare branch and git config
         id: prepare
         run: |
-          set -e
+          set -euo pipefail
           SRC_COMMIT=$(git -C source rev-parse --short HEAD)
-          echo "source_commit=$SRC_COMMIT" >> $GITHUB_OUTPUT
           TIMESTAMP=$(date -u +"%Y%m%d%H%M%S")
           BRANCH="sync-from-genesis-${SRC_COMMIT}-${TIMESTAMP}"
+          echo "source_commit=${SRC_COMMIT}" >> $GITHUB_OUTPUT
           echo "branch=${BRANCH}" >> $GITHUB_OUTPUT
-          echo "Will create branch: ${BRANCH}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          echo "Prepared branch: ${BRANCH}"
 
-      - name: "Copy files from source → target working tree (exclude workflows and .git)"
+      - name: Copy files from source → target working tree (safe rsync with retries)
         run: |
-          set -e
-          # rsync preserves permissions and can delete removed files in source
-          # исключаем .git и .github/workflows, чтобы не заводить workflow-циклы
-          rsync -a --delete \
-            --exclude='.git' \
-            --exclude='.github/workflows' \
-            source/ ./
+          set -euo pipefail
+          SRC=source/
+          DST=./
+          EXCLUDES="--exclude=.git --exclude=.github/workflows"
+          # Try rsync a few times to handle transient FS races ("file has vanished")
+          MAX_RETRIES=3
+          COUNT=0
+          until [ $COUNT -ge $MAX_RETRIES ]
+          do
+            COUNT=$((COUNT+1))
+            echo "rsync attempt $COUNT/$MAX_RETRIES..."
+            # --archive (preserve perms), --delete-after (delete only after transfer),
+            # --delay-updates (write to temp then move), --delete --checksum to be robust
+            rsync -a --delete --delete-after --delay-updates --checksum ${EXCLUDES} "${SRC}" "${DST}" && break || {
+              echo "rsync failed on attempt $COUNT"
+              if [ $COUNT -lt $MAX_RETRIES ]; then
+                echo "sleeping before retry..."
+                sleep 2
+              else
+                echo "rsync failed after ${MAX_RETRIES} attempts"
+                exit 1
+              fi
+            }
+          done
+          echo "Files copied from source → workspace."
 
-          echo "Files copied."
+      - name: Show changed files (debug)
+        run: |
+          # Покажем краткий список изменений до создания ветки
+          git status --porcelain
+          git --no-pager diff --name-only || true
 
-      - name: "Check for changes"
+      - name: Check for changes
         id: check_changes
         run: |
-          set -e
-          # покажем кратко, что изменилось
+          set -euo pipefail
           git add -A
           if git diff --cached --quiet; then
             echo "no_changes=true" >> $GITHUB_OUTPUT
-            echo "No changes to commit — nothing to do."
-            exit 0
+            echo "No changes to commit."
           else
             echo "no_changes=false" >> $GITHUB_OUTPUT
             echo "Changes detected."
-            git reset --mixed # оставим изменения в рабочем каталоге для коммита в отдельной ветке
+            # leave index as-is for commit step
           fi
 
-      - name: "Create branch, commit and push"
+      - name: Create branch, commit and push
         if: steps.check_changes.outputs.no_changes != 'true'
         run: |
-          set -e
+          set -euo pipefail
           BRANCH=${{ steps.prepare.outputs.branch }}
-          SOURCE_COMMIT=${{ steps.prepare.outputs.source_commit }}
-
+          SRC_COMMIT=${{ steps.prepare.outputs.source_commit }}
           git checkout -b "$BRANCH"
           git add -A
-          git commit -m "chore(sync): sync from ${SOURCE_REPO} @${SOURCE_COMMIT}" || {
-            echo "Nothing to commit after all"; exit 0;
+          git commit -m "chore(sync): sync from ${SOURCE_REPO} @${SRC_COMMIT}" || {
+            echo "Nothing to commit after all"
+            exit 0
           }
-
-          # Push uses built-in GITHUB_TOKEN (permissions: contents: write)
+          # Push using built-in GITHUB_TOKEN (permissions: contents: write)
           git push -u origin "$BRANCH"
 
-      - name: "Create Pull Request"
+      - name: Create Pull Request
         if: steps.check_changes.outputs.no_changes != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          set -e
+          set -euo pipefail
           BRANCH=${{ steps.prepare.outputs.branch }}
           SRC_COMMIT=${{ steps.prepare.outputs.source_commit }}
           API_URL="https://api.github.com/repos/${{ env.TARGET_REPO }}/pulls"
 
-          # Узнаём дефолтную ветку целевого репозитория
-          DEFAULT_BRANCH=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ env.TARGET_REPO }}" | grep '"default_branch":' | head -1 | cut -d '"' -f4)
-          if [ -z "$DEFAULT_BRANCH" ]; then
+          # get default branch of target repo
+          DEFAULT_BRANCH=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ env.TARGET_REPO }}" | jq -r .default_branch)
+          if [ -z "$DEFAULT_BRANCH" ] || [ "$DEFAULT_BRANCH" = "null" ]; then
             DEFAULT_BRANCH="main"
           fi
 
           TITLE="Sync from ${SOURCE_REPO} @${SRC_COMMIT}"
-          BODY="Автоматическая синхронизация изменений из ${SOURCE_REPO}.\n\nSource commit: ${SRC_COMMIT}\n\nЕсли нужно — обновите описание PR перед мёржем."
+          BODY="Автоматическая синхронизация изменений из ${SOURCE_REPO}.\n\nSource commit: ${SRC_COMMIT}\n\nПроверьте PR перед мёржем."
 
-          PAYLOAD=$(jq -n --arg t "$TITLE" --arg h "${{ github.repository_owner }}:$BRANCH" --arg b "$DEFAULT_BRANCH" --arg body "$BODY" '{title:$t,head:$h,base:$b,body:$body}')
+          PAYLOAD=$(jq -n --arg t "$TITLE" --arg head "${{ github.repository_owner }}:$BRANCH" --arg base "$DEFAULT_BRANCH" --arg body "$BODY" '{title:$t,head:$head,base:$base,body:$body}')
 
-          # Попытаться создать PR. Если PR уже существует — API вернёт 422 с сообщением.
           HTTP_CODE=$(curl -s -o /tmp/pr.json -w "%{http_code}" -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" -X POST -d "$PAYLOAD" "$API_URL" || true)
           if [ "$HTTP_CODE" = "201" ]; then
             echo "Pull request created."
             cat /tmp/pr.json
           else
-            # если 422 — возможно PR уже открыт; попробуем найти открытый PR с этой веткой
             if [ "$HTTP_CODE" = "422" ]; then
-              echo "PR creation returned 422 — check if a PR already exists for this branch."
+              echo "PR creation returned 422 — maybe a PR already exists for this branch. Searching existing open PRs..."
               EXIST_PRS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ env.TARGET_REPO }}/pulls?head=${{ github.repository_owner }}:$BRANCH&state=open")
-              if [ "$EXIST_PRS" = "[]" ]; then
-                echo "No open PR found, but creation failed (422). Response:"
-                cat /tmp/pr.json
-                exit 1
-              else
-                echo "An open PR already exists for branch ${BRANCH}."
+              if [ "$EXIST_PRS" != "[]" ]; then
+                echo "Existing open PR(s) found:"
                 echo "$EXIST_PRS"
+                exit 0
               fi
-            else
-              echo "Failed to create PR (HTTP $HTTP_CODE). Response:"
-              cat /tmp/pr.json
-              exit 1
             fi
+            echo "Failed to create PR (HTTP $HTTP_CODE). Response:"
+            cat /tmp/pr.json || true
+            exit 1
           fi
+
+      - name: Final status
+        run: |
+          echo "Done."

@@ -1,7 +1,7 @@
 ent-BaseGenerator = генератор
     .desc = Высокоэффективный термоэлектрический генератор.
 ent-BaseGeneratorWallmount = настенный генератор
-    .desc = Высокоэффективный термоэлектрический генератор, помещённый в настенный шкаф.
+    .desc = Высокоэффективный термоэлектрический генератор, помещенный в настенный шкаф.
 ent-BaseGeneratorWallmountFrame = каркас настенного генератора
     .desc = Строительный каркас для настенного генератора.
 ent-GeneratorBasic = { ent-BaseGenerator }
@@ -14,7 +14,7 @@ ent-GeneratorWallmountBasic = { ent-BaseGeneratorWallmount }
     .suffix = Базовый, 3кВт
     .desc = { ent-BaseGeneratorWallmount.desc }
 ent-GeneratorWallmountAPU = ВСУ шаттла
-    .desc = Вспомогательная силовая установка для шаттла — 6кВт.
+    .desc = Вспомогательная силовая установка для шаттла - 6кВт.
     .suffix = ВСУ, 6кВт
 ent-GeneratorRTG = РИТЭГ
     .desc = Радиоизотопный термоэлектрический генератор для долговременного питания.

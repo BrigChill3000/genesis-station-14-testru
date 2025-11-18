@@ -72,5 +72,3 @@ ent-ActionToggleRootable = Rootable
     .desc = Begin or stop being rooted to the floor.
 ent-ActionChameleonController = Control clothing
     .desc = Change your entire outfit fast!
-ent-ActionIntrinsicStore = Store
-    .desc = Opens the store

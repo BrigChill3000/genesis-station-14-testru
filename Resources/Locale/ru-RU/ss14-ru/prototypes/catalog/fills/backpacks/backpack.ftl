@@ -1,4 +1,4 @@
 ent-ClothingBackpackSyndicateBundle = { ent-ClothingBackpackSyndicate }
     .desc = { ent-ClothingBackpackSyndicate.desc }
-ent-ClothingBackpackSyndicateRaidBundle = набор рейдерского костюма Синдиката
-    .desc = Содержит прочный, рейдерский набор брони Синдиката.
+ent-ClothingBackpackSyndicateRaidBundle = syndicate raid suit bundle
+    .desc = Contains the Syndicate's durable raid armor suit.

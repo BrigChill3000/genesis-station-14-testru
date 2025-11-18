@@ -10,8 +10,7 @@
   skinColoration: Hues
   maleFirstNames: NamesMothFirstMale
   femaleFirstNames: NamesMothFirstFemale
-  maleLastNames: NamesMothLast # RU-Localization
-  femaleLastNames: NamesMothLast # RU-Localization
+  lastNames: NamesMothLast
 
 - type: speciesBaseSprites
   id: MobMothSprites

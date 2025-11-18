@@ -1,7 +1,7 @@
 device-pda-slot-component-slot-name-cartridge = Картридж
 default-program-name = Программа
 notekeeper-program-name = Заметки
-nano-task-program-name = НаноДела
+nano-task-program-name = НаноЗадачи
 news-read-program-name = Новости станции
 crew-manifest-program-name = Манифест экипажа
 crew-manifest-cartridge-loading = Загрузка...
@@ -17,14 +17,13 @@ log-probe-label-time = Время
 log-probe-label-accessor = Использовано:
 log-probe-label-number = #
 log-probe-print-button = Распечатать логи
-log-probe-printout-device = Сканированное устройство: { $name }
+log-probe-printout-device = Отсканированное устройство: { $name }
 log-probe-printout-header = Последние логи:
 log-probe-printout-entry = #{ $number } / { $time } / { $accessor }
 astro-nav-program-name = АстроНав
 med-tek-program-name = МедТек
-
-# NanoTask cartridge
-
+# Wanted list cartridge
+wanted-list-program-name = Список разыскиваемых
 nano-task-ui-heading-high-priority-tasks =
     { $amount ->
         [zero] Нет задач высокого приоритета
@@ -66,27 +65,24 @@ nano-task-printed-requester = [bold]Заявитель:[/bold] { $requester }
 nano-task-printed-high-priority = [bold]Приоритет[/bold]: [color=red]Высокий[/color]
 nano-task-printed-medium-priority = [bold]Приоритет[/bold]: Средний
 nano-task-printed-low-priority = [bold]Приоритет[/bold]: Низкий
-# Wanted list cartridge
-wanted-list-program-name = Список разыскиваемых
-wanted-list-label-no-records = Всё спокойно, ковбой.
+wanted-list-label-no-records = Всё в порядке, ковбой.
 wanted-list-search-placeholder = Поиск по имени и статусу
 wanted-list-age-label = [color=darkgray]Возраст:[/color] [color=white]{ $age }[/color]
-wanted-list-job-label = [color=darkgray]Должность:[/color] [color=white]{ $job }[/color]
-wanted-list-species-label = [color=darkgray]Вид:[/color] [color=white]{ $species }[/color]
-wanted-list-gender-label = [color=darkgray]Гендер:[/color] [color=white]{ $gender }[/color]
+wanted-list-job-label = [color=darkgray]Работа:[/color] [color=white]{ $job }[/color]
+wanted-list-species-label = [color=darkgray]Раса:[/color] [color=white]{ $species }[/color]
+wanted-list-gender-label = [color=darkgray]Пол:[/color] [color=white]{ $gender }[/color]
 wanted-list-reason-label = [color=darkgray]Причина:[/color] [color=white]{ $reason }[/color]
 wanted-list-unknown-reason-label = неизвестная причина
 wanted-list-initiator-label = [color=darkgray]Инициатор:[/color] [color=white]{ $initiator }[/color]
 wanted-list-unknown-initiator-label = неизвестный инициатор
-wanted-list-status-label = [color=darkgray]статус:[/color] { $status ->
+wanted-list-status-label =
+    { "[" }color=darkgray]status:[/color] { $status ->
         [suspected] [color=yellow]подозревается[/color]
         [wanted] [color=red]разыскивается[/color]
         [detained] [color=#b18644]под арестом[/color]
-        [paroled] [color=green]освобождён по УДО[/color]
+        [paroled] [color=green]УДО[/color]
         [discharged] [color=green]освобождён[/color]
-        [hostile] [color=darkred]враждебен[/color]
-        [eliminated] [color=gray]ликвидирован[/color]
-       *[other] нет
+       *[other] Нет
     }
 wanted-list-history-table-time-col = Время
 wanted-list-history-table-reason-col = Преступление

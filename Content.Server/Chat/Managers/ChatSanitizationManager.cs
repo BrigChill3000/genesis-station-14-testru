@@ -14,34 +14,6 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
 {
     private static readonly (Regex regex, string emoteKey)[] ShorthandToEmote =
     [
-        // RU-Localization-Start
-        Entry("хд", "chatsan-laughs"),
-        Entry("о-о", "chatsan-wide-eyed"), // cyrillic о
-        Entry("о.о", "chatsan-wide-eyed"), // cyrillic о
-        Entry("0_о", "chatsan-wide-eyed"), // cyrillic о
-        Entry("о/", "chatsan-waves"), // cyrillic о
-        Entry("о7", "chatsan-salutes"), // cyrillic о
-        Entry("0_o", "chatsan-wide-eyed"),
-        Entry("лмао", "chatsan-laughs"),
-        Entry("рофл", "chatsan-laughs"),
-        Entry("яхз", "chatsan-shrugs"),
-        Entry(":0", "chatsan-surprised"),
-        Entry(":ь", "chatsan-stick-out-tongue"),
-        Entry("=р", "chatsan-stick-out-tongue"), // cyrillic р
-        Entry("=ь", "chatsan-stick-out-tongue"),
-        Entry("кек", "chatsan-laughs"),
-        Entry("T_T", "chatsan-cries"),
-        Entry("Т_Т", "chatsan-cries"), // cyrillic T
-        Entry("=_(", "chatsan-cries"),
-        Entry("!с", "chatsan-laughs"),
-        Entry("!в", "chatsan-sighs"),
-        Entry("!х", "chatsan-claps"),
-        Entry("!щ", "chatsan-snaps"),
-        Entry("))", "chatsan-smiles-widely"),
-        Entry(")", "chatsan-smiles"),
-        Entry("((", "chatsan-frowns-deeply"),
-        Entry("(", "chatsan-frowns"),
-        // RU-Localization-End
         Entry(":)", "chatsan-smiles"),
         Entry(":]", "chatsan-smiles"),
         Entry("=)", "chatsan-smiles"),
@@ -68,6 +40,7 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         Entry(":>", "chatsan-grins"),
         Entry(":<", "chatsan-pouts"),
         Entry("xD", "chatsan-laughs"),
+        Entry("хд", "chatsan-laughs"), // Starshine-Localization
         Entry(":'(", "chatsan-cries"),
         Entry(":'[", "chatsan-cries"),
         Entry("='(", "chatsan-cries"),
@@ -89,22 +62,32 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         Entry(":b", "chatsan-stick-out-tongue"),
         Entry("0-0", "chatsan-wide-eyed"),
         Entry("o-o", "chatsan-wide-eyed"),
+        Entry("о-о", "chatsan-wide-eyed"), // cyrillic о | Starshine-Localization
         Entry("o.o", "chatsan-wide-eyed"),
+        Entry("о.о", "chatsan-wide-eyed"), // cyrillic о | Starshine-Localization
+        Entry("0_o", "chatsan-wide-eyed"),
+        Entry("0_о", "chatsan-wide-eyed"), // cyrillic о | Starshine-Localization
         Entry("._.", "chatsan-surprised"),
         Entry(".-.", "chatsan-confused"),
         Entry("-_-", "chatsan-unimpressed"),
         Entry("smh", "chatsan-unimpressed"),
         Entry("o/", "chatsan-waves"),
+        Entry("о/", "chatsan-waves"), // cyrillic о | Starshine-Localization
         Entry("^^/", "chatsan-waves"),
         Entry(":/", "chatsan-uncertain"),
         Entry(":\\", "chatsan-uncertain"),
         Entry("lmao", "chatsan-laughs"),
         Entry("lmfao", "chatsan-laughs"),
+        Entry("лмао", "chatsan-laughs"), // Starshine-Localization
         Entry("lol", "chatsan-laughs"),
         Entry("lel", "chatsan-laughs"),
+        Entry("лол", "chatsan-laughs"), // Starshine-Localization
         Entry("kek", "chatsan-laughs"),
+        Entry("кек", "chatsan-laughs"), // Starshine-Localization
         Entry("rofl", "chatsan-laughs"),
+        Entry("рофл", "chatsan-laughs"), // Starshine-Localization
         Entry("o7", "chatsan-salutes"),
+        Entry("о7", "chatsan-salutes"), // cyrillic о | Starshine-Localization
         Entry(";_;7", "chatsan-tearfully-salutes"),
         Entry(";)", "chatsan-winks"),
         Entry(";]", "chatsan-winks"),

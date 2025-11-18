@@ -1,10 +1,10 @@
 ent-BaseCartridgeRifle = cartridge (.20 rifle)
     .desc = { ent-BaseCartridge.desc }
 ent-CartridgeRifle = cartridge (.20 rifle)
-    .desc = A modern intermediate cartridge for combat rifles. Standard kinetic ammunition is common and useful in most situations.
+    .desc = { ent-BaseCartridgeRifle.desc }
 ent-CartridgeRiflePractice = cartridge (.20 rifle practice)
-    .desc = A modern intermediate cartridge for combat rifles. Chalk ammunition is generally non-harmful, used for practice.
+    .desc = { ent-BaseCartridgeRifle.desc }
 ent-CartridgeRifleIncendiary = cartridge (.20 rifle incendiary)
-    .desc = A modern intermediate cartridge for combat rifles. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
+    .desc = { ent-BaseCartridgeRifle.desc }
 ent-CartridgeRifleUranium = cartridge (.20 rifle uranium)
-    .desc = A modern intermediate cartridge for combat rifles. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating the target from the inside.
+    .desc = { ent-BaseCartridgeRifle.desc }

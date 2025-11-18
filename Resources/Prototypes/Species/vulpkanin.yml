@@ -10,8 +10,7 @@
   skinColoration: VulpkaninColors
   maleFirstNames: names_vulpkanin_male
   femaleFirstNames: names_vulpkanin_female
-  maleLastNames: names_vulpkanin_last # RU-Localization
-  femaleLastNames: names_vulpkanin_last # RU-Localization
+  lastNames: names_vulpkanin_last
 
 - type: speciesBaseSprites
   id: MobVulpkaninSprites

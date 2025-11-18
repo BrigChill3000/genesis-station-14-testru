@@ -2,7 +2,6 @@
   id: EngiVendInventory
   startingInventory:
     ClothingEyesGlassesMeson: 4
-    ClothingEyesHudDiagnostic: 4
     ClothingHeadHatWelding: 6
     CrowbarYellow: 8
     Multitool: 4
@@ -14,3 +13,5 @@
   contrabandInventory:
     CowToolboxFilled: 1
     DrinkBeerCan: 3
+  emaggedInventory:
+    ClothingHandsGlovesCE: 1

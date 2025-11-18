@@ -30,9 +30,9 @@
     - map: [ "shoes" ]
     - map: [ "ears" ]
     - map: [ "eyes" ]
-    - map: [ "belt" ]
     - map: [ "id" ]
     - map: [ "outerClothing" ]
+    - map: [ "belt" ] # Genesis-Edit
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
@@ -118,7 +118,7 @@
     - reagents: [Water, SpaceCleaner]
       methods: [Touch]
       effects:
-      - !type:WashCreamPie
+      - !type:WashCreamPieReaction
   - type: StatusEffects
     allowed:
     - Electrocution
@@ -176,9 +176,6 @@
     factions:
     - NanoTrasen
   - type: CreamPied
-  - type: ParcelWrapOverride
-    parcelPrototype: WrappedParcelHumanoid
-    wrapDelay: 5
   - type: Stripping
   - type: UserInterface
     interfaces:
@@ -210,6 +207,8 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
+  - type: CanEscapeInventory # Genesis-Edit
+  - type: Carriable # Genesis-Edit
 
 - type: entity
   save: false
@@ -321,9 +320,9 @@
     - map: [ "shoes" ]
     - map: [ "ears" ]
     - map: [ "eyes" ]
-    - map: [ "belt" ]
     - map: [ "id" ]
     - map: [ "outerClothing" ]
+    - map: [ "belt" ] # Genesis-Edit
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]

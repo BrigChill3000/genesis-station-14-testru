@@ -99,8 +99,8 @@ public sealed partial class GroupedAccessLevelChecklist : BoxContainer
 
     private bool TryRebuildAccessGroupControls()
     {
-        AccessGroupList.RemoveAllChildren();
-        AccessLevelChecklist.RemoveAllChildren();
+        AccessGroupList.DisposeAllChildren();
+        AccessLevelChecklist.DisposeAllChildren();
 
         // No access level prototypes were assigned to any of the access level groups.
         // Either the turret controller has no assigned access levels or their names were invalid.
@@ -119,11 +119,11 @@ public sealed partial class GroupedAccessLevelChecklist : BoxContainer
             if (_groupedAccessLevels.Count > 1)
             {
                 if (AccessGroupList.ChildCount == 0)
-                    accessGroupButton.AddStyleClass(StyleClass.ButtonOpenLeft);
+                    accessGroupButton.AddStyleClass(StyleBase.ButtonOpenLeft);
                 else if (_groupedAccessLevels.Count > 1 && AccessGroupList.ChildCount == (_groupedAccessLevels.Count - 1))
-                    accessGroupButton.AddStyleClass(StyleClass.ButtonOpenRight);
+                    accessGroupButton.AddStyleClass(StyleBase.ButtonOpenRight);
                 else
-                    accessGroupButton.AddStyleClass(StyleClass.ButtonOpenBoth);
+                    accessGroupButton.AddStyleClass(StyleBase.ButtonOpenBoth);
             }
 
             accessGroupButton.Pressed = _accessGroupTabIndex == orderedAccessGroups.IndexOf(accessGroup);
@@ -165,7 +165,7 @@ public sealed partial class GroupedAccessLevelChecklist : BoxContainer
     /// </summary>
     public void RebuildAccessLevelsControls()
     {
-        AccessLevelChecklist.RemoveAllChildren();
+        AccessLevelChecklist.DisposeAllChildren();
         _accessLevelEntries.Clear();
 
         // No access level prototypes were assigned to any of the access level groups

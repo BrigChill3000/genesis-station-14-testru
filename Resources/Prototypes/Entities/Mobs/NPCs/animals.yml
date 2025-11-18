@@ -1215,8 +1215,6 @@
         true
       NavSmash: !type:Bool
         true
-  - type: Puller
-    needsHands: false
   - type: Prying
     pryPowered: true
     force: true
@@ -1332,7 +1330,6 @@
   abstract: true
   components:
   - type: CombatMode
-    canDisarm: true
   - type: Inventory
     templateId: monkey
     speciesId: monkey
@@ -1439,7 +1436,7 @@
     - reagents: [ Water, SpaceCleaner ]
       methods: [ Touch ]
       effects:
-      - !type:WashCreamPie
+      - !type:WashCreamPieReaction
   - type: Crawler
 
 
@@ -1833,6 +1830,7 @@
     - ChefPilot
     - Mouse
     - Meat
+    - FelinidFood 
   - type: Respirator
     damage:
       types:
@@ -1981,12 +1979,6 @@
   parent: MobMouse
   id: MobMouseCancer
   components:
-  - type: GhostRole
-    name: ghost-role-information-cancer-mouse-name
-    description: ghost-role-information-cancer-mouse-description
-    rules: ghost-role-information-freeagent-rules
-    mindRoles:
-    - MindRoleGhostRoleFreeAgent
   - type: Sprite
     color: LightGreen
   - type: PointLight
@@ -2347,7 +2339,7 @@
   - type: MobMover
   - type: HTN
     rootTask:
-      task: GrenadePenguinCompound
+      task: SimpleHostileCompound
   - type: NpcFactionMember
     factions:
     - Syndicate
@@ -2395,9 +2387,9 @@
     beepInterval: 1
   - type: Explosive
     explosionType: Default
-    maxIntensity: 10
-    intensitySlope: 3
-    totalIntensity: 150
+    maxIntensity: 20
+    intensitySlope: 20
+    totalIntensity: 225
   - type: ExplodeOnTrigger
     keysIn:
     - timer
@@ -2509,8 +2501,6 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/snake_hiss.ogg
-  - type: Puller
-    needsHands: false
   - type: NoSlip
   - type: Spider
   - type: IgnoreSpiderWeb
@@ -2548,6 +2538,10 @@
       groups:
         Brute: -0.07
         Burn: -0.07
+  - type: NightVision
+    isToggle: true
+    color: "#ff6161"
+    playSoundOn: false
 
 - type: entity
   parent: MobSpiderBase
@@ -2663,6 +2657,10 @@
     - type: Bloodstream
       bloodMaxVolume: 150
       bloodReagent: Laughter
+    - type: NightVision
+      isToggle: true
+      color: "#6666ff"
+      playSoundOn: false
 
 - type: entity
   name: wizard spider

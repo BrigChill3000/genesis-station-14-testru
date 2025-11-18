@@ -33,6 +33,16 @@ namespace Content.IntegrationTests.Tests.Preferences
   - Aaliyah
 
 - type: dataset
+  id: sqlite_test_names_last_male
+  values:
+  - Ackerley
+
+- type: dataset
+  id: sqlite_test_names_last_female
+  values:
+  - Ackerla
+
+- type: dataset
   id: sqlite_test_names_last
   values:
   - Ackerley";

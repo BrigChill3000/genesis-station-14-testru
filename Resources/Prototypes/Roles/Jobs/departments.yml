@@ -6,7 +6,9 @@
   roles:
   - CargoTechnician
   - Quartermaster
+  - SeniorSalvage # Genesis-Station
   - SalvageSpecialist
+  - Miner # Genesis-Station
 
 - type: department
   id: Civilian
@@ -15,6 +17,7 @@
   color: "#9FED58"
   weight: -10
   roles:
+  - SeniorService # Genesis-Station
   - Bartender
   - Botanist
   - Boxer
@@ -23,7 +26,6 @@
   - Clown
   - HeadOfPersonnel
   - Janitor
-  - Lawyer
   - Librarian
   - Mime
   - Musician
@@ -32,6 +34,7 @@
   - Visitor
   - Zookeeper
   - ServiceWorker
+  - Prisoner # Genesis-Station
 
 - type: department
   id: CentralCommand
@@ -39,6 +42,15 @@
   description: department-CentralCommand-description
   color: "#0c344d"
   roles:
+  - HeadOfStaffCentCom # Genesis-Station
+  - CentComOfficial # Genesis-Station
+  - CentComOperator # Genesis-Station
+  - HeadOfSecurityCentCom # Genesis-Station
+  - CentralCommandSecurityOfficer # Genesis-Station
+  - CentralCommandMedicalDoctor # Genesis-Station
+  - CentralCommandEngineer # Genesis-Station
+  - CentralCommandAssistant # Genesis-Station
+  - CentralCommandCargoTechnician # Genesis-Station
   - CentralCommandOfficial
   - CBURN
   - ERTLeader
@@ -48,7 +60,7 @@
   - ERTSecurity
   - ERTEngineer
   - DeathSquad
-  editorHidden: true
+  primary: false
   weight: 120
 
 - type: department
@@ -58,6 +70,7 @@
   color: "#334E6D"
   roles:
   - Captain
+  - Magistrat # Genesis-Station
   - ChiefEngineer
   - ChiefMedicalOfficer
   - HeadOfPersonnel
@@ -84,6 +97,7 @@
   roles:
   - AtmosphericTechnician
   - ChiefEngineer
+  - SeniorEngineer # Genesis-Edit
   - StationEngineer
   - TechnicalAssistant
 
@@ -95,6 +109,7 @@
   roles:
   - Chemist
   - ChiefMedicalOfficer
+  - SeniorPhysician # Genesis-Edit
   - MedicalDoctor
   - MedicalIntern
   - Psychologist
@@ -109,8 +124,11 @@
   roles:
   - HeadOfSecurity
   - SecurityCadet
+  - Pilot # Corvax-Pilot Edit by Genesis
+  - SeniorOfficer # Genesis-Edit
   - SecurityOfficer
   - Detective
+  - Brigmedic # Genesis-Station
   - Warden
 
 - type: department
@@ -120,7 +138,9 @@
   color: "#D381C9"
   roles:
   - ResearchDirector
+  - SeniorResearcher # Genesis-Edit
   - Scientist
+  - Roboticist # Genesis-Station
   - ResearchAssistant
 
 - type: department
@@ -143,4 +163,6 @@
   - Reporter
   - Zookeeper
   - Psychologist
+  - Pilot # Corvax-Pilot Edit by Genesis
+  - Prisoner # Genesis-Station
   primary: false

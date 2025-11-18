@@ -1,48 +1,42 @@
-# Generic
+lathe-category-ammo = Боеприпасы
+lathe-category-clothing = Clothing
 lathe-category-circuitry = Электроника
-lathe-category-clothing = Одежда
+lathe-category-machines = Machines
 lathe-category-lights = Лампы
-lathe-category-machines = Машины
+lathe-category-tiles = Tiles
+lathe-category-mechs = Мехи
 lathe-category-parts = Компоненты
+lathe-category-robotics = Робототехника
 lathe-category-tools = Инструменты
 lathe-category-weapons = Вооружение
-# Biogen
-lathe-category-food = Пища
+# Circuit imprinter
+lathe-category-computers = Computers
+lathe-category-engineering = Engineering
+lathe-category-general = General
+lathe-category-medical = Medical
+lathe-category-research = Research
+lathe-category-security = Security
+lathe-category-service = Service
+lathe-category-supply = Supply
+# Cutter
+lathe-category-concrete = Concrete
+lathe-category-dark = Dark
+lathe-category-maints = Maints
+lathe-category-steel = Steel
+lathe-category-white = White
+lathe-category-wood = Wood
+lathe-category-marble = Marble
+lathe-category-food = Еда
+lathe-category-modules = Modules
 lathe-category-chemicals = Химикаты
 lathe-category-materials = Материалы
-# Circuit imprinter
-lathe-category-computers = Компьютеры
-lathe-category-engineering = Инженерия
-lathe-category-general = Общее
-lathe-category-medical = Медицина
-lathe-category-research = Исследования
-lathe-category-security = Безопасность
-lathe-category-service = Сервис
-lathe-category-supply = Снабжение
-# Cutter
-lathe-category-tiles = Плитка
-lathe-category-circuit-tile = Микросхема
-lathe-category-concrete-tile = Бетон
-lathe-category-dark-tile = Тёмная
-lathe-category-faux-tile = Искусственная
-lathe-category-maints-tile = Техи
-lathe-category-marble = Мрамор
-lathe-category-steel-tile = Сталь
-lathe-category-white-tile = Белая
-lathe-category-wood-tile = Деревянная
-# Science
-lathe-category-mechs = Мехи
-lathe-category-modules = Модули
-lathe-category-robotics = Робототехника
-# Security TechFab
-lathe-category-ammo = Боеприпасы
-lathe-category-boxes = Коробки
-lathe-category-magazines = Магазины
+lathe-category-boxes = Boxes
+lathe-category-magazines = Magazines
 # Uniform
 lathe-category-bedsheets = Одеяла
 lathe-category-carpets = Ковры
-lathe-category-coats = Халаты
-lathe-category-command = Командование
+lathe-category-coats = Куртки
+lathe-category-command = Команднование
 lathe-category-hats = Шляпы
 lathe-category-jumpsuits = Комбинезоны
 lathe-category-neck = Шея

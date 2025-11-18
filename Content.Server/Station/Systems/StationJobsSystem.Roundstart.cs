@@ -371,7 +371,7 @@ public sealed partial class StationJobsSystem
                 if (weight is not null && job.Weight != weight.Value)
                     continue;
 
-                if (!(roleBans == null || !roleBans.Contains(jobId))) //TODO: Replace with IsRoleBanned
+                if (!(roleBans == null || !roleBans.Contains(jobId)))
                     continue;
 
                 availableJobs ??= new List<string>(profile.JobPriorities.Count);

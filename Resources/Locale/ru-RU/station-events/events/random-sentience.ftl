@@ -35,5 +35,5 @@ station-event-random-sentience-role-description = Вы разумный { $name 
 station-event-random-sentience-flavor-mechanical = механизмы
 station-event-random-sentience-flavor-organic = органики
 station-event-random-sentience-flavor-primate = приматы
-station-event-random-sentience-flavor-kobold = кобольды
+station-event-random-sentience-flavor-kobold = кобольд
 station-event-random-sentience-flavor-inanimate = неодушевлённые предметы

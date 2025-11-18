@@ -1,6 +1,6 @@
 barsign-component-name = вывеска бара
-barsign-ui-menu = Настройка вывески бара
-barsign-ui-set-label = Выбрать вывеску:
+barsign-ui-menu = Конфигурация барной вывески
+barsign-ui-set-label = Установить вывеску:
 
 # Bar signs prototypes
 
@@ -8,16 +8,16 @@ barsign-ui-set-label = Выбрать вывеску:
 ## The Harmbaton
 
 barsign-prototype-name-harmbaton = Хармбатон
-barsign-prototype-description-harmbaton = Отличные обеды как для сотрудников службы безопасности, так и для пассажиров.
+barsign-prototype-description-harmbaton = Отличные обеды как для сотрудников службы безопасности, так и для ассистентов.
 
 ## The Singulo
 
 barsign-prototype-name-singulo = Сингуло
-barsign-prototype-description-singulo = Куда приходят люди, которые не любят, чтобы их звали по имени.
+barsign-prototype-description-singulo = Куда попадают люди, которые не любят, чтобы их звали по имени.
 
 ## The Drunk Carp
 
-barsign-prototype-name-drunk-carp = Бухой карп
+barsign-prototype-name-drunk-carp = Пьяный карп
 barsign-prototype-description-drunk-carp = Не пейте плавая.
 
 ## Officer Beersky
@@ -28,7 +28,7 @@ barsign-prototype-description-officer-beersky = Мужик, эти напитк�
 ## The Outer Spess
 
 barsign-prototype-name-outer-spess = Открытый космос
-barsign-prototype-description-outer-spess = На самом деле этот бар расположен не в открытом космосе.
+barsign-prototype-description-outer-spess = На самом деле, этот бар расположен не в открытом космосе.
 
 ## The Coderbus
 
@@ -37,7 +37,7 @@ barsign-prototype-description-coderbus = Очень противоречивый
 
 ## Robusta Cafe
 
-barsign-prototype-name-robusta-cafe = Кафе Робуста
+barsign-prototype-name-robusta-cafe = Кафе Робаста
 barsign-prototype-description-robusta-cafe = Неоспоримый обладатель рекорда "Самые смертоносные бои" уже 5 лет.
 
 ## Emergency Rum Party
@@ -53,7 +53,7 @@ barsign-prototype-description-combo-cafe = Известны по всей сис
 ## The Ale Nath
 
 barsign-prototype-name-ale-nath = Эль'натх
-barsign-prototype-description-ale-nath = По какой-то причине притягивает таинственных незнакомцев в робах, шепчущих EI NATH.
+barsign-prototype-description-ale-nath = По какой-то причине, притягивает таинственных незнакомцев в робах, шепчущих EI NATH.
 
 ## The Net
 
@@ -73,11 +73,11 @@ barsign-prototype-description-maltese-falcon = Сыграй ещё раз, Сэ�
 ## The Sun
 
 barsign-prototype-name-the-sun = Солнце
-barsign-prototype-description-the-sun = Иронично яркая для такого тёмного бара.
+barsign-prototype-description-the-sun = Иронично яркий для такого тёмного бара.
 
 ## The Birdcage
 
-barsign-prototype-name-the-birdcage = Вольер
+barsign-prototype-name-the-birdcage = Клетка
 barsign-prototype-description-the-birdcage = Ку-ку!
 
 ## Zocalo
@@ -92,13 +92,13 @@ barsign-prototype-description-lv426 = Выпить с модной маской 
 
 ## The Wiggle Roomm
 
-barsign-prototype-name-wiggle-room = Комната Виггль
+barsign-prototype-name-wiggle-room = Пространство для манёвра
 barsign-prototype-description-wiggle-room = MoMMI маневрируют в танце.
 
 ## The Lightbulb
 
 barsign-prototype-name-the-lightbulb = Лампочка
-barsign-prototype-description-the-lightbulb = Кафе, популярное среди молей и мотыльков. Однажды его закрыли на неделю после того, как барменша использовала нафталин для обработки своей запасной униформы.
+barsign-prototype-description-the-lightbulb = Кафе, популярное среди мотыльков и моффов. Однажды, его закрыли на неделю после того, как барменша использовала нафталин для обработки своей запасной униформы.
 
 ## The Loose Goose
 
@@ -108,7 +108,7 @@ barsign-prototype-description-goose = Пей до рвоты и/или нару�
 ## The Engine Change
 
 barsign-prototype-name-enginechange = Замена двигателя
-barsign-prototype-description-enginechange = Всё ещё ожидаем.
+barsign-prototype-description-enginechange = Все ещё ожидаем.
 
 ## 4 The Emprah
 
@@ -117,23 +117,17 @@ barsign-prototype-description-emprah = Нравится и фанатикам, �
 
 ## Spacebucks
 
-barsign-prototype-name-spacebucks = Спейсбакс
-barsign-prototype-description-spacebucks = От них нельзя скрыться, даже в космосе, и даже после того, как некоторые стали называть их "срубли".
-
-## Maltroach
-
-barsign-prototype-name-maltroach = Пивная Моль
-barsign-prototype-description-maltroach = Сквик!
-
-## Whiskey Echoes
-
-barsign-prototype-name-whiskeyechoes = Виски Эхо
-barsign-prototype-description-whiskeyechoes = Элитный бар для элитных опер... Подождите, это же станция Nanotrasen. Почему эта вывеска в базе данных?
+barsign-prototype-name-spacebucks = Космобаксы
+barsign-prototype-description-spacebucks = От них невозможно скрыться, даже в космосе.
 
 ## EmpBarSign
 
-barsign-prototype-description-empbarsign = Что-то пошло совсем не так.
+barsign-prototype-name-maltroach = Солодомоль
+barsign-prototype-description-maltroach = Жжжжжж!
+barsign-prototype-description-empbarsign = Что-то явно пошло не так.
+barsign-prototype-name-whiskeyechoes = Эхо Виски
+barsign-prototype-description-whiskeyechoes = Элитный бар для элитных операт... Погодите, это же станция Nanotrasen. Почему эта вывеска в базе данных?
 
 ## SignOff
 
-barsign-prototype-description-sign-off = Эта вывеска, похоже, не включёна.
+barsign-prototype-description-sign-off = Этот знак, похоже, не включен.

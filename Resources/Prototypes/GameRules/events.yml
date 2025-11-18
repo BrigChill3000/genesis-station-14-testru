@@ -151,6 +151,8 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-bureaucratic-error-announcement
+    startAudio:
+      path: /Audio/Announcements/bureaucratic.ogg
     minimumPlayers: 25
     weight: 3
     duration: 1
@@ -373,8 +375,10 @@
   - type: StationEvent
     startAnnouncement: station-event-gas-leak-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Announcements/gasleak_start.ogg
     endAnnouncement: station-event-gas-leak-end-announcement
+    endAudio:
+      path: /Audio/Announcements/gasleak_end.ogg
     weight: 8
   - type: GasLeakRule
 
@@ -440,7 +444,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-clog-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Announcements/ventclog.ogg
     earliestStart: 15
     minimumPlayers: 15
     weight: 5

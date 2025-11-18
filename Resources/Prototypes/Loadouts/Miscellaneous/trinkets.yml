@@ -6,7 +6,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Command
-      time: 1h
+      time: 3600 # 1 hour
 
 # Flowers
 - type: loadout
@@ -106,123 +106,7 @@
     - CigarGold
   groupBy: "smokeables"
 
-# Folders
-- type: loadout
-  id: BoxFolderBaseThreePapers
-  storage:
-    back:
-    - BoxFolderBaseThreePapers
-  groupBy: "folders"
-
-- type: loadout
-  id: BoxFolderPlasticClipboardThreePapers
-  storage:
-    back:
-    - BoxFolderPlasticClipboardThreePapers
-  groupBy: "folders"
-
-- type: loadout
-  id: BoxFolderClipboardThreePapers
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: Command
-  storage:
-    back:
-    - BoxFolderClipboardThreePapers
-  groupBy: "folders"
-
 # Pins
-- type: loadout
-  id: ClothingNeckLGBTPin
-  storage:
-    back:
-    - ClothingNeckLGBTPin
-  groupBy: "pin"
-
-- type: loadout
-  id: ClothingNeckAllyPin
-  storage:
-    back:
-    - ClothingNeckAllyPin
-  groupBy: "pin"
-
-- type: loadout
-  id: ClothingNeckAromanticPin
-  storage:
-    back:
-    - ClothingNeckAromanticPin
-  groupBy: "pin"
-
-- type: loadout
-  id: ClothingNeckAsexualPin
-  storage:
-    back:
-    - ClothingNeckAsexualPin
-  groupBy: "pin"
-
-- type: loadout
-  id: ClothingNeckBisexualPin
-  storage:
-    back:
-    - ClothingNeckBisexualPin
-  groupBy: "pin"
-
-- type: loadout
-  id: ClothingNeckGayPin
-  storage:
-    back:
-    - ClothingNeckGayPin
-  groupBy: "pin"
-
-- type: loadout
-  id: ClothingNeckIntersexPin
-  storage:
-    back:
-    - ClothingNeckIntersexPin
-  groupBy: "pin"
-
-- type: loadout
-  id: ClothingNeckLesbianPin
-  storage:
-    back:
-    - ClothingNeckLesbianPin
-  groupBy: "pin"
-
-- type: loadout
-  id: ClothingNeckNonBinaryPin
-  storage:
-    back:
-    - ClothingNeckNonBinaryPin
-  groupBy: "pin"
-
-- type: loadout
-  id: ClothingNeckPansexualPin
-  storage:
-    back:
-    - ClothingNeckPansexualPin
-  groupBy: "pin"
-
-- type: loadout
-  id: ClothingNeckOmnisexualPin
-  storage:
-    back:
-    - ClothingNeckOmnisexualPin
-  groupBy: "pin"
-
-- type: loadout
-  id: ClothingNeckGenderqueerPin
-  storage:
-    back:
-    - ClothingNeckGenderqueerPin
-  groupBy: "pin"
-
-- type: loadout
-  id: ClothingNeckTransPin
-  storage:
-    back:
-    - ClothingNeckTransPin
-  groupBy: "pin"
-
 - type: loadout
   id: ClothingNeckAutismPin
   storage:
@@ -235,27 +119,6 @@
   storage:
     back:
     - ClothingNeckGoldAutismPin
-  groupBy: "pin"
-
-- type: loadout
-  id: ClothingNeckAroacePin
-  storage:
-    back:
-    - ClothingNeckAroacePin
-  groupBy: "pin"
-
-- type: loadout
-  id: ClothingNeckPluralPin
-  storage:
-    back:
-    - ClothingNeckPluralPin
-  groupBy: "pin"
-
-- type: loadout
-  id: ClothingNeckGenderfluidPin
-  storage:
-    back:
-    - ClothingNeckGenderfluidPin
   groupBy: "pin"
 
 # Canes
@@ -333,7 +196,7 @@
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:OverallPlaytimeRequirement
-      time: 10h
+      time: 36000 # 10hr
   storage:
     back:
     - TowelColorWhite
@@ -345,7 +208,7 @@
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:OverallPlaytimeRequirement
-      time: 500h
+      time: 1800000 # 500hr
   storage:
     back:
     - TowelColorSilver
@@ -357,7 +220,7 @@
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:OverallPlaytimeRequirement
-      time: 1000h
+      time: 3600000 # 1000hr
   storage:
     back:
     - TowelColorGold
@@ -370,7 +233,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Cargo
-      time: 100h
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorLightBrown
@@ -383,7 +246,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Civilian
-      time: 100h
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorGreen
@@ -396,7 +259,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Command
-      time: 100h
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorDarkBlue
@@ -409,7 +272,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Engineering
-      time: 100h
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorOrange
@@ -422,7 +285,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Medical
-      time: 100h
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorLightBlue
@@ -435,7 +298,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Science
-      time: 100h
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorPurple
@@ -448,7 +311,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Security
-      time: 100h
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorRed
@@ -461,7 +324,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobPassenger
-      time: 100h
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorGray
@@ -474,7 +337,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobChaplain
-      time: 100h
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorBlack
@@ -487,7 +350,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobLibrarian
-      time: 100h
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorDarkGreen
@@ -500,7 +363,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobLawyer
-      time: 100h
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorMaroon
@@ -513,7 +376,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobClown
-      time: 100h
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorYellow
@@ -526,7 +389,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMime
-      time: 100h
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorMime

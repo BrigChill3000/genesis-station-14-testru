@@ -1,16 +1,13 @@
 ﻿using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
-using Robust.Shared.Random; // RU-Localization
 
 namespace Content.Server.Speech.EntitySystems;
 
 public sealed class MothAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!; // RU-Localization
-
-    private static readonly Regex RegexLowerBuzz = new Regex("z{1,3}");
-    private static readonly Regex RegexUpperBuzz = new Regex("Z{1,3}");
+    private static readonly Regex RegexLowerBuzz = new Regex("з{1,3}");
+    private static readonly Regex RegexUpperBuzz = new Regex("З{1,3}");
 
     public override void Initialize()
     {
@@ -23,36 +20,9 @@ public sealed class MothAccentSystem : EntitySystem
         var message = args.Message;
 
         // buzzz
-        message = RegexLowerBuzz.Replace(message, "zzz");
+        message = RegexLowerBuzz.Replace(message, "ззз");
         // buZZZ
-        message = RegexUpperBuzz.Replace(message, "ZZZ");
-
-        // RU-Localization-Start
-        // ж => жжж
-        message = Regex.Replace(
-            message,
-            "ж+",
-            _random.Pick(new List<string>() { "жж", "жжж" })
-        );
-        // Ж => ЖЖЖ
-        message = Regex.Replace(
-            message,
-            "Ж+",
-            _random.Pick(new List<string>() { "ЖЖ", "ЖЖЖ" })
-        );
-        // з => ссс
-        message = Regex.Replace(
-            message,
-            "з+",
-            _random.Pick(new List<string>() { "зз", "ззз" })
-        );
-        // З => CCC
-        message = Regex.Replace(
-            message,
-            "З+",
-            _random.Pick(new List<string>() { "ЗЗ", "ЗЗЗ" })
-        );
-        // RU-Localization-End
+        message = RegexUpperBuzz.Replace(message, "ЗЗЗ");
 
         args.Message = message;
     }

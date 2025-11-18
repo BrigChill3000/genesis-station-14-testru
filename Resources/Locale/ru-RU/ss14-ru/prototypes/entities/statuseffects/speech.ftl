@@ -1,8 +1,6 @@
 ent-SpeechStatusEffectBase = { ent-MobStatusEffectDebuff }
     .desc = { ent-MobStatusEffectDebuff.desc }
-ent-StatusEffectStutter = заикание
+ent-StatusEffectStutter = stutter
     .desc = { ent-SpeechStatusEffectBase.desc }
-ent-StatusEffectSlurred = невнятность
-    .desc = { ent-SpeechStatusEffectBase.desc }
-ent-StatusEffectScrambled = неразборчивость
+ent-StatusEffectSlurred = slurred
     .desc = { ent-SpeechStatusEffectBase.desc }

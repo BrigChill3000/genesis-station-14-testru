@@ -9,7 +9,10 @@ cmd-parse-failure-float = { $arg } не является допустимым fl
 cmd-parse-failure-bool = { $arg } не является допустимым bool.
 cmd-parse-failure-uid = { $arg } не является допустимым UID сущности.
 cmd-parse-failure-mapid = { $arg } не является допустимым MapId.
+cmd-parse-failure-enum = { $arg } не является { $enum } Enum.
+cmd-parse-failure-grid = { $arg } не является допустимым гридом.
 cmd-parse-failure-entity-exist = UID { $arg } не соответствует существующей сущности.
+cmd-parse-failure-session = Не существует сессии с именем пользователя: { $username }
 cmd-error-file-not-found = Не удалось найти файл: { $file }.
 cmd-error-dir-not-found = Не удалось найти директорию: { $dir }.
 cmd-failure-no-attached-entity = К этой оболочке не привязана никакая сущность.
@@ -22,7 +25,7 @@ cmd-help-help =
     Если имя команды не будет указано, будет выведена общая справка. Если имя команды будет указано, будет выведена справка по этой команде.
 cmd-help-no-args = Чтобы получить справку по определённой команде, используйте 'help <command>'. Для получения списка всех доступных команд используйте 'list'. Для поиска по командам используйте 'list <filter>'.
 cmd-help-unknown = Неизвестная команда: { $command }
-cmd-help-top = { $command } — { $description }
+cmd-help-top = { $command } - { $description }
 cmd-help-invalid-args = Недопустимое количество аргументов.
 cmd-help-arg-cmdname = [имя команды]
 
@@ -40,6 +43,13 @@ cmd-cvar-parse-error = Входное значение имеет неправи
 cmd-cvar-compl-list = Список доступных CVar-ов
 cmd-cvar-arg-name = <name | ?>
 cmd-cvar-value-hidden = <value hidden>
+
+## 'cvar_subs' command
+
+cmd-cvar_subs-desc = Перечисляет подписки OnValueChanged для CVar.
+cmd-cvar_subs-help = Использование: cvar_subs <name>
+cmd-cvar_subs-invalid-args = Должен быть ровно один аргумент.
+cmd-cvar_subs-arg-name = <name>
 
 ## 'list' command
 
@@ -144,11 +154,14 @@ cmd-monitor-arg-count = Отсутствует аргумент монитора
 cmd-monitor-minus-all-hint = Скрывает все мониторы
 cmd-monitor-plus-all-hint = Показывает все мониторы
 
-## Mapping commands
+## 'setambientlight' command
 
 cmd-set-ambient-light-desc = Позволяет установить эмбиентое освещение для указанной карты, в формате SRGB.
 cmd-set-ambient-light-help = setambientlight [mapid] [r g b a]
 cmd-set-ambient-light-parse = Не удалось спарсить аргументы как байтовые значения цветов.
+
+## Mapping commands
+
 cmd-savemap-desc = Сериализует карту на диск. Не будет сохранять карту после инициализации, если это не будет сделано принудительно.
 cmd-savemap-help = savemap <MapID> <Path> [force]
 cmd-savemap-not-exist = Целевая карта не существует.
@@ -190,6 +203,9 @@ cmd-guidump-desc = Дамп дерева интерфейса в /guidump.txt в
 cmd-guidump-help = Использование: guidump
 cmd-uitest-desc = Открыть UI окно для тестирования
 cmd-uitest-help = Использование: uitest
+
+## 'uitest2' command
+
 cmd-uitest2-desc = Открывает UI контрольного тестирования ОС
 cmd-uitest2-help = Использование: uitest2 <tab>
 cmd-uitest2-arg-tab = <tab>
@@ -220,6 +236,9 @@ cmd-cldbglyr-help =
     cldbglyr: Отключить все слои
 cmd-key-info-desc = Информация о ключе для клавиши.
 cmd-key-info-help = Использование: keyinfo <Кнопка>
+
+## 'bind' command
+
 cmd-bind-desc = Привязывает комбинацию клавиш ввода с командой ввода.
 cmd-bind-help =
     Использование: bind { cmd-bind-arg-key } { cmd-bind-arg-mode } { cmd-bind-arg-command }
@@ -234,7 +253,7 @@ cmd-net-watch-ent-desc = Выводит на консоль все сетевы�
 cmd-net-watch-ent-help = Использование: net_watchent <0|EntityUid>
 cmd-net-refresh-desc = Запрашивает полное состояние сервера.
 cmd-net-refresh-help = Использование: net_refresh
-cmd-net-entity-report-desc = Переключает панель отчёта о сетевых сущностях.
+cmd-net-entity-report-desc = Переключает панель отчета о сетевых сущностях.
 cmd-net-entity-report-help = Использование: net_entityreport
 cmd-fill-desc = Заполнить консоль для отладки.
 cmd-fill-help = Заполняет консоль всякой чепухой для отладки.
@@ -264,22 +283,33 @@ cmd-savegrid-desc = Сериализует грид на диск.
 cmd-savegrid-help = savegrid <gridID> <Path>
 cmd-testbed-desc = Загружает физический испытательный стенд на указаной карте.
 cmd-testbed-help = testbed <mapid> <test>
-cmd-saveconfig-desc = Сохраняет конфигурацию клиента в файл конфигурации.
-cmd-saveconfig-help = saveconfig
+
+## 'addcomp' command
+
 cmd-addcomp-desc = Добавляет компонент сущности.
 cmd-addcomp-help = addcomp <uid> <componentName>
-cmd-addcompc-desc = Добавляет компонент сущности на клиенте.
-cmd-addcompc-help = addcompc <uid> <componentName>
+
+## 'rmcomp' command
+
 cmd-rmcomp-desc = Удаляет компонент у сущности.
 cmd-rmcomp-help = rmcomp <uid> <componentName>
 cmd-rmcompc-desc = Удаляет компонент у сущности на клиенте.
 cmd-rmcompc-help = rmcomp <uid> <componentName>
+
+## 'addview' command
+
 cmd-addview-desc = Позволяет подписаться на просмотр сущности в целях отладки.
 cmd-addview-help = addview <entityUid>
 cmd-addviewc-desc = Позволяет подписаться на просмотр сущности в целях отладки.
 cmd-addviewc-help = addview <entityUid>
+
+## 'removeview' command
+
 cmd-removeview-desc = Позволяет отписаться от просмотра сущности в целях отладки.
 cmd-removeview-help = removeview <entityUid>
+
+## 'loglevel' command
+
 cmd-loglevel-desc = Изменяет уровень логирования для предоставленного sawmill.
 cmd-loglevel-help =
     Использование: loglevel <sawmill> <level>
@@ -291,14 +321,29 @@ cmd-testlog-help =
     sawmill: Метка, префиксируемая логированному сообщению.
     level: Уровень логирования. Должно соответствовать одному из значений перечисления LogLevel.
     message: Логируемое сообщение. Заключите в двойные кавычки, если хотите использовать пробелы.
+
+## 'vv' command
+
 cmd-vv-desc = Открывает просмотр переменных.
 cmd-vv-help = Использование: vv <сущность ID|IoC имя интерфейса|SIoC имя интерфейса>
+
+## 'showvelocities' command
+
 cmd-showvelocities-desc = Отображает угловую и линейную скорости.
 cmd-showvelocities-help = Использование: showvelocities
+
+## 'setinputcontext' command
+
 cmd-setinputcontext-desc = Устанавливает активный контекст ввода.
 cmd-setinputcontext-help = Использование: setinputcontext <context>
+
+## 'forall' command
+
 cmd-forall-desc = Запускает команду для всех сущностей с данным компонентом.
 cmd-forall-help = Использование: forall <bql query> do <command...>
+
+## 'delete' command
+
 cmd-delete-desc = Удаляет сущность с указанным ID.
 cmd-delete-help = delete <entity UID>
 # System commands
@@ -308,6 +353,8 @@ cmd-restart-desc = Корректно перезапускает сервер (�
 cmd-restart-help = restart
 cmd-shutdown-desc = Корректно выключает сервер.
 cmd-shutdown-help = shutdown
+cmd-saveconfig-desc = Сохраняет конфигурацию клиента в файл конфигурации.
+cmd-saveconfig-help = saveconfig
 cmd-netaudit-desc = Выводит информацию о безопасности NetMsg.
 cmd-netaudit-help = netaudit
 # Player commands
@@ -321,7 +368,7 @@ cmd-tpto-parse-error = Не удаётся распознать сущность
 cmd-listplayers-desc = Перечисляет всех игроков, подключённых в данный момент.
 cmd-listplayers-help = listplayers
 cmd-kick-desc = Кикает подключённого игрока с сервера, отключая его от сети.
-cmd-kick-help = kick <PlayerIndex> [<Reason>]
+cmd-kick-help = kick <ИндексИгрока> [<Причина>]
 # Spin command
 cmd-spin-desc = Заставляет сущность вращаться. Сущность по умолчанию является надклассом прикреплённого игрока.
 cmd-spin-help = spin velocity [drag] [entityUid]
@@ -329,9 +376,9 @@ cmd-spin-help = spin velocity [drag] [entityUid]
 cmd-rldloc-desc = Перезагружает локализацию (клиент и сервер).
 cmd-rldloc-help = Использование: rldloc
 # Debug entity controls
-cmd-spawn-desc = Создаёт сущность определённого типа.
+cmd-spawn-desc = Создаёт сущность определенного типа.
 cmd-spawn-help = spawn <прототип> ИЛИ spawn <прототип> <относительная сущность ID> ИЛИ spawn <прототип> <x> <y>
-cmd-cspawn-desc = Спавнит на стороне клиента сущность определённого типа у ваших ног.
+cmd-cspawn-desc = Спавнит на стороне клиента сущность определенного типа у ваших ног.
 cmd-cspawn-help = cspawn <entity type>
 cmd-scale-desc = Увеличивает или уменьшает размер сущности.
 cmd-scale-help = scale <entityUid> <float>
@@ -355,12 +402,12 @@ cmd-sggcell-desc = Перечисляет сущности в ячейке се�
 cmd-sggcell-help = Использование: sggcell <gridID> <vector2i>\nЭтот vector2i параметр в форме x<int>,y<int>.
 cmd-overrideplayername-desc = Изменяет имя, используемое при попытке подключения к серверу.
 cmd-overrideplayername-help = Использование: overrideplayername <name>
-cmd-showanchored-desc = Показывает закреплённые объекты на определённой плитке.
+cmd-showanchored-desc = Показывает закреплённые объекты на определенной плитке.
 cmd-showanchored-help = Использование: showanchored
 cmd-dmetamem-desc = Выводит члены типа в формате, подходящем для файла конфигурации песочницы.
 cmd-dmetamem-help = Использование: dmetamem <type>
 cmd-launchauth-desc = Загрузить токены аутентификации из данных лаунчера, чтобы облегчить тестирование работающих серверов.
-cmd-launchauth-help = Использование: launchauth <account name>
+cmd-launchauth-help = Использование: launchauth <имя аккаунта>
 cmd-lightbb-desc = Переключить отображение световой ограничительной рамки.
 cmd-lightbb-help = Использование: lightbb
 cmd-monitorinfo-desc = Информация о мониторах
@@ -372,7 +419,7 @@ cmd-physics-help = Использование: physics <aabbs / com / contactnor
 cmd-hardquit-desc = Мгновенно убивает игровой клиент.
 cmd-hardquit-help = Убивает игровой клиент мгновенно, не оставляя следов. Не говорит серверу пока.
 cmd-quit-desc = Корректное завершение работы клиента игры.
-cmd-quit-help = Правильно завершает работу игрового клиента, уведомляя об этом подключённый сервер и т.д.
+cmd-quit-help = Правильно завершает работу игрового клиента, уведомляя об этом подключенный сервер и т.д.
 cmd-csi-desc = Открывает интерактивную консоль C#.
 cmd-csi-help = Использование: csi
 cmd-scsi-desc = Открывает интерактивную консоль C# на сервере.
@@ -383,7 +430,7 @@ cmd-showspritebb-desc = Переключить отображение грани
 cmd-showspritebb-help = Использование: showspritebb
 cmd-togglelookup-desc = Показывает/скрывает границы списка сущностей с помощью наложения.
 cmd-togglelookup-help = Использование: togglelookup
-cmd-net_entityreport-desc = Переключает панель отчёта о сетевых сущностях.
+cmd-net_entityreport-desc = Переключает панель отчета о сетевых сущностях.
 cmd-net_entityreport-help = Использование: net_entityreport
 cmd-net_refresh-desc = Запрашивает полное состояние сервера.
 cmd-net_refresh-help = Использование: net_refresh
@@ -410,6 +457,7 @@ cmd-szr_stats-help = Использование: szr_stats
 cmd-hwid-desc = Возвращает текущий HWID (HardWare ID).
 cmd-hwid-help = Использование: hwid
 cmd-vvread-desc = Получить значение пути с помощью VV (View Variables).
+cmd-vvread-help = Использование: vvread <path>
 cmd-vvwrite-desc = Изменить значение пути с помощью VV (View Variables).
 cmd-vvwrite-help = Использование: vvwrite <path>
 cmd-vvinvoke-desc = Вызов/запуск пути с аргументами с помощью VV.
@@ -423,6 +471,9 @@ cmd-hub_advertise_now-desc = Немедленно разместить серв�
 cmd-hub_advertise_now-help = Использование: hub_advertise_now
 cmd-echo-desc = Вывести аргументы в консоль
 cmd-echo-help = Использование: echo "<сообщение>"
+
+## 'vfs_ls' command
+
 cmd-vfs_ls-desc = Перечислить содержимое каталогов в VFS.
 cmd-vfs_ls-help =
     Использование: vfs_list <path>
@@ -430,3 +481,15 @@ cmd-vfs_ls-help =
     vfs_list /Assemblies
 cmd-vfs_ls-err-args = Нужен ровно 1 аргумент.
 cmd-vfs_ls-hint-path = <path>
+cmd-reloadtiletextures-desc = Перезагружает атлас текстур тайла, чтобы обеспечить горячую перезагрузку спрайтов тайла
+cmd-reloadtiletextures-help = Использование: reloadtiletextures
+cmd-audio_length-desc = Показывает длину аудиофайла
+cmd-audio_length-help = Использование: audio_length { cmd-audio_length-arg-file-name }
+cmd-audio_length-arg-file-name = <имя файла>
+
+## PVS
+
+cmd-pvs-override-info-desc = Выводит информацию о всех переопределениях PVS, связанных с сущностью.
+cmd-pvs-override-info-empty = У сущности { $nuid } нет переопределений PVS.
+cmd-pvs-override-info-global = Сущность { $nuid } имеет глобальное переопределение.
+cmd-pvs-override-info-clients = Сущность { $nuid } имеет переопределение сессии для { $clients }.

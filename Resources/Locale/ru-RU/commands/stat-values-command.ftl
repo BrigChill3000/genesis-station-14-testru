@@ -1,4 +1,4 @@
-stat-values-desc = Выгружает всю статистику для определённой категории в таблицу.
+stat-values-desc = Выгружает всю статистику для определенной категории в таблицу.
 stat-values-server = Не может быть запущено на сервере!
 stat-values-args = Неверное число аргументов, нужен 1
 stat-values-invalid = { $arg } не является действительной характеристикой!
@@ -7,14 +7,14 @@ stat-cargo-values = Цена продажи груза
 stat-cargo-id = ID
 stat-cargo-price = Цена
 # Melee
-stat-melee-values = Урон в ближнем бою
+stat-melee-values = Melee weapon damage
 stat-melee-id = ID
-stat-melee-base-damage = Базовый урон
-stat-melee-wield-damage = Урон с двух рук
-stat-melee-attack-rate = Скорость атаки
-stat-melee-dps = Урон в секунду
-stat-melee-structural-damage = Структурный урон
-stat-melee-structural-wield-damage = Структурный урон с двух рук
+stat-melee-base-damage = Base damage
+stat-melee-wield-damage = Wielded damage
+stat-melee-attack-rate = Attack rate
+stat-melee-dps = DPS
+stat-melee-structural-damage = Structure damage
+stat-melee-structural-wield-damage = Wielded structure damage
 # Lathe
 stat-lathe-values = Стоимость печати в лате
 stat-lathe-id = ID
@@ -25,6 +25,6 @@ stat-item-values = Размеры предметов
 stat-item-id = ID
 stat-item-price = Размер
 # Draw Rate
-stat-drawrate-values = Уровень потребления ЛКП
+stat-drawrate-values = Расход ЛКП
 stat-drawrate-id = ID
-stat-drawrate-rate = Уровень потребления (Вт)
+stat-drawrate-rate = Расход (Вт)

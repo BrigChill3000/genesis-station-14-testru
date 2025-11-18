@@ -10,8 +10,7 @@
   skinColoration: Hues
   maleFirstNames: NamesDionaFirst
   femaleFirstNames: NamesDionaFirst
-  maleLastNames: NamesDionaLast # RU-Localization
-  femaleLastNames: NamesDionaLast # RU-Localization
+  lastNames: NamesDionaLast
   naming: TheFirstofLast
 
 - type: speciesBaseSprites

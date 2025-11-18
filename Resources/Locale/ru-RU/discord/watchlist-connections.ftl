@@ -1,8 +1,7 @@
 discord-watchlist-connection-header =
-    { $players } { $players ->
-        [one] игрок в списке наблюдения подключился
-        [few] игрока в списке наблюдения поключились
-       *[other] игроков в списке наблюдения подключились
+    { $players ->
+        [one] { $players } игрок из списка наблюдения подключился
+       *[other] { $players } игроки из списка наблюдения подключились
     } к { $serverName }
 discord-watchlist-connection-entry =
     - { $playerName } с сообщением "{ $message }"{ $expiry ->
@@ -10,7 +9,6 @@ discord-watchlist-connection-entry =
        *[other] { " " }(истекает <t:{ $expiry }:R>)
     }{ $otherWatchlists ->
         [0] { "" }
-        [one] { " " }и ещё { $otherWatchlists } наблюдением
-        [few] { " " }и ещё { $otherWatchlists } наблюдения
-       *[other] { " " }и ещё { $otherWatchlists } наблюдений
+        [one] { " " }и { $otherWatchlists } другой заметкой наблюдения
+       *[other] { " " }и { $otherWatchlists } других заметок наблюдения
     }

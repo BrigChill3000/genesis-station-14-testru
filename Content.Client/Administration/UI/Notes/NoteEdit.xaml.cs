@@ -106,7 +106,7 @@ public sealed partial class NoteEdit : FancyWindow
             {
                 PermanentCheckBox.Pressed = false;
                 UpdatePermanentCheckboxFields();
-                ExpiryLineEdit.Text = ExpiryTime.Value.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
+                ExpiryLineEdit.Text = ExpiryTime.Value.ToLocalTime().ToString("dd-MM-yyyy HH:mm:ss");
             }
         }
 
@@ -133,7 +133,7 @@ public sealed partial class NoteEdit : FancyWindow
     private bool IsSecret { get; set; }
     private NoteType NoteType { get; set; }
 
-    public NoteSeverity? NoteSeverity
+    private NoteSeverity? NoteSeverity
     {
         get => _noteSeverity;
         set

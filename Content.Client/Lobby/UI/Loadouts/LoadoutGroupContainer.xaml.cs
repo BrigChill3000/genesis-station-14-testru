@@ -42,7 +42,7 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
     {
         var protoMan = collection.Resolve<IPrototypeManager>();
         var loadoutSystem = collection.Resolve<IEntityManager>().System<LoadoutSystem>();
-        RestrictionsContainer.RemoveAllChildren();
+        RestrictionsContainer.DisposeAllChildren();
 
         if (_groupProto.MinLimit > 0)
         {
@@ -71,7 +71,7 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
             });
         }
 
-        LoadoutsContainer.RemoveAllChildren();
+        LoadoutsContainer.DisposeAllChildren();
 
         // Get all loadout prototypes for this group.
         var validProtos = _groupProto.Loadouts.Select(id => protoMan.Index(id));

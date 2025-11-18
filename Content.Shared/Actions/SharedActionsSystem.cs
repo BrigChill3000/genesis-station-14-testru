@@ -840,7 +840,7 @@ public abstract partial class SharedActionsSystem : EntitySystem
 
         if (!_actionsQuery.Resolve(performer, ref performer.Comp, false))
         {
-            DebugTools.Assert(TerminatingOrDeleted(performer));
+            DebugTools.Assert(performer == null || TerminatingOrDeleted(performer));
             ent.Comp.AttachedEntity = null;
             // TODO: should this delete the action since it's now orphaned?
             return;

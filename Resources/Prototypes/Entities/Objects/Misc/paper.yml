@@ -84,6 +84,12 @@
         type: PaperBoundUserInterface
   - type: FaxableObject
   - type: PaperVisuals
+# Corvax-Printer-Start
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Paper: 100
+# Corvax-Printer-End
 
 - type: entity
   name: paper scrap
@@ -128,6 +134,9 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
+  - type: GuideHelp
+    guides:
+    - ArtifactReports
   - type: PaperVisuals
     headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
     headerMargin: 0.0, 0.0, 0.0, 16.0

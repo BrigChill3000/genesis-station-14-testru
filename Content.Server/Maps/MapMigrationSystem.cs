@@ -22,7 +22,7 @@ public sealed class MapMigrationSystem : EntitySystem
 #pragma warning restore CS0414
     [Dependency] private readonly IResourceManager _resMan = default!;
 
-    private const string MigrationFile = "/migration.yml";
+    private static readonly string[] MigrationFiles = ["/migration.yml", "/starshine_migration.yml"];
 
     public override void Initialize()
     {
@@ -30,50 +30,61 @@ public sealed class MapMigrationSystem : EntitySystem
         SubscribeLocalEvent<BeforeEntityReadEvent>(OnBeforeReadEvent);
 
 #if DEBUG
-        if (!TryReadFile(out var mappings))
+        if (!TryReadFiles(out var mappingsList))
             return;
 
         // Verify that all of the entries map to valid entity prototypes.
-        foreach (var node in mappings.Children.Values)
+        foreach (var mappings in mappingsList)
         {
-            var newId = ((ValueDataNode) node).Value;
-            if (!string.IsNullOrEmpty(newId) && newId != "null")
-                DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(newId), $"{newId} is not an entity prototype.");
+            foreach (var node in mappings.Children.Values)
+            {
+                var newId = ((ValueDataNode) node).Value;
+                if (!string.IsNullOrEmpty(newId) && newId != "null")
+                    DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(newId), $"{newId} is not an entity prototype.");
+            }
         }
 #endif
     }
 
-    private bool TryReadFile([NotNullWhen(true)] out MappingDataNode? mappings)
+    private bool TryReadFiles([NotNullWhen(true)] out List<MappingDataNode>? mappingsList)
     {
-        mappings = null;
-        var path = new ResPath(MigrationFile);
-        if (!_resMan.TryContentFileRead(path, out var stream))
-            return false;
+        mappingsList = new List<MappingDataNode>();
 
-        using var reader = new StreamReader(stream, EncodingHelpers.UTF8);
-        var documents = DataNodeParser.ParseYamlStream(reader).FirstOrDefault();
+        foreach (var file in MigrationFiles)
+        {
+            var path = new ResPath(file);
+            if (!_resMan.TryContentFileRead(path, out var stream))
+                continue;
 
-        if (documents == null)
-            return false;
+            using var reader = new StreamReader(stream, EncodingHelpers.UTF8);
+            var documents = DataNodeParser.ParseYamlStream(reader).FirstOrDefault();
 
-        mappings = (MappingDataNode) documents.Root;
-        return true;
+            if (documents == null)
+                continue;
+
+            mappingsList.Add((MappingDataNode) documents.Root);
+        }
+
+        return mappingsList.Count > 0;
     }
 
     private void OnBeforeReadEvent(BeforeEntityReadEvent ev)
     {
-        if (!TryReadFile(out var mappings))
+        if (!TryReadFiles(out var mappingsList))
             return;
 
-        foreach (var (key, value) in mappings)
+        foreach (var mappings in mappingsList)
         {
-            if (value is not ValueDataNode valueNode)
-                continue;
+            foreach (var (key, value) in mappings)
+            {
+                if (value is not ValueDataNode valueNode)
+                    continue;
 
-            if (string.IsNullOrWhiteSpace(valueNode.Value) || valueNode.Value == "null")
-                ev.DeletedPrototypes.Add(key);
-            else
-                ev.RenamedPrototypes.Add(key, valueNode.Value);
+                if (string.IsNullOrWhiteSpace(valueNode.Value) || valueNode.Value == "null")
+                    ev.DeletedPrototypes.Add(key);
+                else
+                    ev.RenamedPrototypes.Add(key, valueNode.Value);
+            }
         }
     }
 }

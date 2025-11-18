@@ -1,9 +1,9 @@
 nukeops-title = Ядерные оперативники
 nukeops-description = Ядерные оперативники нацелились на станцию. Постарайтесь не дать им взвести и взорвать ядерную бомбу, защищая ядерный диск!
 nukeops-welcome =
-    Вы — ядерный оперативник. Ваша задача — взорвать { $station } и убедиться, что от неё осталась лишь груда обломков. Ваше руководство, Синдикат, снабдило вас всем необходимым для выполнения этой задачи.
+    Вы - ядерный оперативник. Ваша задача - взорвать { $station } и убедиться, что от неё осталась лишь груда обломков. Ваше руководство, Синдикат, снабдило вас всем необходимым для выполнения этой задачи.
     Операция "{ $name }" началась! Смерть Nanotrasen!
-nukeops-briefing = Ваши задачи просты. Доставить бомбу и убраться до того, как она взорвётся. Начинайте миссию.
+nukeops-briefing = Ваши задачи просты. Доставить бомбу и выбраться до того, как она взорвётся. Начинайте миссию.
 nukeops-opsmajor = [color=crimson]Крупная победа Синдиката![/color]
 nukeops-opsminor = [color=crimson]Малая победа Синдиката![/color]
 nukeops-neutral = [color=yellow]Ничейный исход![/color]
@@ -23,8 +23,8 @@ nukeops-cond-allnukiesalive = Все ядерные оперативники в�
 nukeops-list-start = Ядерными оперативниками были:
 nukeops-list-name = - [color=White]{ $name }[/color]
 nukeops-list-name-user = - [color=White]{ $name }[/color] ([color=gray]{ $user }[/color])
-nukeops-not-enough-ready-players = Недостаточно игроков готовы к игре! { $readyPlayersCount } игроков из необходимых { $minimumPlayers } готовы. Нельзя запустить пресет Ядерные оперативники.
-nukeops-no-one-ready = Нет готовых игроков! Нельзя запустить пресет Ядерные оперативники.
+nukeops-not-enough-ready-players = Недостаточно игроков готовы к игре! { $readyPlayersCount } игроков из необходимых { $minimumPlayers } готовы. Нельзя запустить режим Ядерные оперативники.
+nukeops-no-one-ready = Нет готовых игроков! Нельзя запустить режим Ядерные оперативники.
 nukeops-role-commander = Командир
-nukeops-role-agent = Медик
+nukeops-role-agent = Агент
 nukeops-role-operator = Оператор

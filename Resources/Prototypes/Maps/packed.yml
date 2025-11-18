@@ -3,7 +3,7 @@
   id: Packed
   mapName: 'Packed'
   mapPath: /Maps/packed.yml
-  minPlayers: 0 # Axolotl
+  minPlayers: 7
   maxPlayers: 35
   stations:
     Packed:

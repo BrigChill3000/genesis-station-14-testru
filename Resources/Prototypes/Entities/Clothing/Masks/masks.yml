@@ -379,13 +379,6 @@
   - type: Tag
     tags:
     - WhitelistChameleon
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - Snout
-    - HeadTop
-    - HeadSide
-    hideOnToggle: true
   - type: Armor
     modifiers:
       coefficients:
@@ -425,11 +418,6 @@
   - type: Tag
     tags:
     - WhitelistChameleon
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - Snout
-    hideOnToggle: true
   - type: FlashImmunity
   - type: EyeProtection
   - type: Armor
@@ -450,11 +438,6 @@
     sprite: Clothing/Mask/squadron.rsi
   - type: Clothing
     sprite: Clothing/Mask/squadron.rsi
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - HeadTop
-    - HeadSide
   - type: Armor
     modifiers:
       coefficients:

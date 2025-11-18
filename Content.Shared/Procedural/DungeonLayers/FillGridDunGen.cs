@@ -21,4 +21,3 @@ public sealed partial class FillGridDunGen : IDunGenLayer
     [DataField(required: true)]
     public EntProtoId Entity;
 }
-

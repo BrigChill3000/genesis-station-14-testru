@@ -9,7 +9,7 @@ names-moth-first-male-dataset-4 = Цезарь
 # Coscinocera hercules
 names-moth-first-male-dataset-5 = Геркулес
 # Itame brunneata, "Rannoch Looper"
-names-moth-first-male-dataset-6 = Раннох
+names-moth-first-male-dataset-6 = Раннок
 # Acosmeryx socrates
 names-moth-first-male-dataset-7 = Сократ
 # Saturniidae solus
@@ -18,7 +18,7 @@ names-moth-first-male-dataset-8 = Солус
 ## Other languages
 
 # Hebrew עש "moth"
-names-moth-first-male-dataset-9 = Эш
+names-moth-first-male-dataset-9 = Аш
 # Persian "fire"
 names-moth-first-male-dataset-10 = Азар
 # German "emperor" descendant of the Latin caesar
@@ -33,7 +33,7 @@ names-moth-first-male-dataset-14 = Скорос
 ## Myth and legend
 
 # Legendary king of the Britons who crafted wings and died in his attempt at flight
-names-moth-first-male-dataset-15 = Бладуд
+names-moth-first-male-dataset-15 = Балдуд
 # Father of Icarus
 names-moth-first-male-dataset-16 = Дедал
 # Greek primordial deity of darkness
@@ -41,7 +41,7 @@ names-moth-first-male-dataset-17 = Эребус
 # The classic
 names-moth-first-male-dataset-18 = Икар
 # Hindu figure, similar to Icarus
-names-moth-first-male-dataset-19 = Джатайу
+names-moth-first-male-dataset-19 = Джатаю
 # Japanese reading of 夸父（こほ）
 names-moth-first-male-dataset-20 = Кохо
 # Chinese giant 夸父, similar to Icarus
@@ -59,18 +59,18 @@ names-moth-first-male-dataset-25 = Волфорд
 
 names-moth-first-male-dataset-26 = Эйс
 names-moth-first-male-dataset-27 = Альтаир
-names-moth-first-male-dataset-28 = Дасти
+names-moth-first-male-dataset-28 = Пыльный
 names-moth-first-male-dataset-29 = Гамбит
-names-moth-first-male-dataset-30 = Хоук
-names-moth-first-male-dataset-31 = Мотью
-names-moth-first-male-dataset-32 = Тимоти
+names-moth-first-male-dataset-30 = Соксетра
+names-moth-first-male-dataset-31 = Тутовый
+names-moth-first-male-dataset-32 = Тимофей
 
 ## Common names, filler
 
-names-moth-first-male-dataset-33 = Эшер
-names-moth-first-male-dataset-34 = Роман
-names-moth-first-male-dataset-35 = Исаак
-names-moth-first-male-dataset-36 = Самюэл
-names-moth-first-male-dataset-37 = Себастиан
+names-moth-first-male-dataset-33 = Ашер
+names-moth-first-male-dataset-34 = Исаак
+names-moth-first-male-dataset-35 = Роман
+names-moth-first-male-dataset-36 = Самуэль
+names-moth-first-male-dataset-37 = Себастьян
 names-moth-first-male-dataset-38 = Сайлас
-names-moth-first-male-dataset-39 = Саймон
+names-moth-first-male-dataset-39 = Симон

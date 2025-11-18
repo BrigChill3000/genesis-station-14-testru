@@ -58,9 +58,6 @@ public sealed class JobWhitelistManager : IPostInjectInit
             SendJobWhitelist(session);
     }
 
-    /// <summary>
-    /// Returns false if role whitelist is required but the player does not have it.
-    /// </summary>
     public bool IsAllowed(ICommonSession session, ProtoId<JobPrototype> job)
     {
         if (!_config.GetCVar(CCVars.GameRoleWhitelist))

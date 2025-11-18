@@ -89,14 +89,18 @@ public sealed partial class SpeciesPrototype : IPrototype
     [DataField]
     public ProtoId<LocalizedDatasetPrototype> FemaleFirstNames { get; private set; } = "NamesFirstFemale";
 
-    // RU-Localization-Start: Split lastname field by gender
-    [DataField]
-    // public ProtoId<LocalizedDatasetPrototype> LastNames { get; private set; } = "NamesLast";
-    public ProtoId<LocalizedDatasetPrototype> MaleLastNames { get; private set; } = "NamesLastMale";
+    #region Starshine-Last-Names
 
     [DataField]
-    public ProtoId<LocalizedDatasetPrototype> FemaleLastNames { get; private set; } = "NamesLastFemale";
-    // RU-Localization-End
+    public ProtoId<LocalizedDatasetPrototype> MaleLastNames { get; } = "NamesLastMale";
+
+    [DataField]
+    public ProtoId<LocalizedDatasetPrototype> FemaleLastNames { get; } = "NamesLastFemale";
+
+    #endregion
+
+    [DataField]
+    public ProtoId<LocalizedDatasetPrototype> LastNames { get; private set; } = "NamesLast";
 
     [DataField]
     public SpeciesNaming Naming { get; private set; } = SpeciesNaming.FirstLast;

@@ -1,8 +1,8 @@
-ent-BasePKAUpgrade = модкит ПКУ
-    .desc = Модификационный набор для протокинетического ускорителя.
-ent-PKAUpgradeDamage = модкит ПКУ (урон)
+ent-BasePKAUpgrade = PKA modkit
+    .desc = A modkit for a proto-kinetic accelerator.
+ent-PKAUpgradeDamage = PKA modkit (damage)
     .desc = { ent-BasePKAUpgrade.desc }
-ent-PKAUpgradeRange = модкит ПКУ (дальность)
+ent-PKAUpgradeRange = PKA modkit (range)
     .desc = { ent-BasePKAUpgrade.desc }
-ent-PKAUpgradeFireRate = моднабор ПКУ (скорострельность)
+ent-PKAUpgradeFireRate = PKA modkit (fire rate)
     .desc = { ent-BasePKAUpgrade.desc }

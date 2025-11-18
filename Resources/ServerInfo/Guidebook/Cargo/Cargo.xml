@@ -1,25 +1,24 @@
 <Document>
-  # Cargo
+  # Карго
+  Отдел снабжения, более известный как [color=cyan]Карго[/color], отвечает за обеспечение станции необходимыми ресурсами, такими как топливо и сырьеи и ресурсами комфорта, такими как лотерейные билеты и плюшевые игрушки.
 
-  The Supply department, also known as [color=cyan]Cargo[/color], supplies the station with necessary resources, such as fuel and raw materials, and comfort resources, such as lottery tickets and plushies.
+  Они добывают [color=cyan]космобаксы[/color] (валюта станции) для этого разными способами, например, беря задание, продавая разные предметы и занимаясь продажей второстепенных ресурсов, найденных на обломках/экспедициях, что позволяет им приобретать за пределами станции разнообразное оборудование для нужд любого члена экипажа. Задача [color=cyan]Карго[/color] - удовлетворять потребности остальных членов станции.
 
-  They raise the [color=cyan]spesos[/color] (the currency of the station) for this through many methods, such as taking bounties, selling miscellaneous items, and salvaging, allowing them to purchase a wide variety of equipment from off-station for any crew member's needs. It is Cargo's job to fulfill the needs of the rest of the station.
+  ## Персонал
 
-  ## Personnel
-
-  Cargo is made up of [color=cyan]Cargo Technicians[/color] and [color=cyan]Salvage Specialists[/color] and is led by the [color=cyan]Quartermaster[/color].
+  Отдел карго состоит из [color=cyan]Грузчиков[/color] и [color=cyan]Утилизаторов[/color], а возглавляет их [color=cyan]Квартирмейстер[/color].
 
   <Box>
-    <GuideEntityEmbed Entity="ToyFigurineCargoTech" Caption="Cargo Tech"/>
-    <GuideEntityEmbed Entity="ToyFigurineSalvage" Caption="Salvage"/>
-    <GuideEntityEmbed Entity="ToyFigurineQuartermaster" Caption="QM"/>
+    <GuideEntityEmbed Entity="ToyFigurineCargoTech" Caption="Грузчик"/>
+    <GuideEntityEmbed Entity="ToyFigurineSalvage" Caption="Утилизатор"/>
+    <GuideEntityEmbed Entity="ToyFigurineQuartermaster" Caption="КМ"/>
   </Box>
 
-  ## Making Money
+  ## Зароботок
 
-  The main struggle of any Cargo department is not having enough money.
+  Главная проблема любого отдела снабжения - нехватка денег.
 
-  Cargo makes their money by selling things at the [color=cyan]Trading Station[/color]. Almost everything on the station has economic value that you can sell, as seen via the [color=cyan]appraisal tool[/color]. That value then further increases when you sell it as part of a [textlink="bounty" link="CargoBounties"].
+  Карго зарабатывает деньги, продавая вещи на Торговой станции. Почти всё на станции имеет экономическую ценность, которую вы можете продать, цену предмета можно узнать [color=cyan]оценочным инструментом[/color]. Эта ценность еще больше возрастает, когда вы продаете её как часть [textlink="bounty" link="CargoBounties"].
 
   <Box>
     <GuideEntityEmbed Entity="AppraisalTool"/>

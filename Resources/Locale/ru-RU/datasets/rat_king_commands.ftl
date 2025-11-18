@@ -6,6 +6,6 @@ rat-king-command-follow-2 = За мной!
 rat-king-command-cheese-1 = В атаку!
 rat-king-command-cheese-2 = Фас!
 rat-king-command-cheese-3 = Убить!
-rat-king-command-cheese-4 = Убейте его!
+rat-king-command-cheese-4 = Сыруйте их!
 rat-king-command-loose-1 = Вольно!
 rat-king-command-loose-2 = Врассыпную!

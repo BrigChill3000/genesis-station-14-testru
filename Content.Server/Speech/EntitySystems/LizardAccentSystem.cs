@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
-using Robust.Shared.Random; // RU-Localization
+using Robust.Shared.Random; // Starshine-Localization
 
 namespace Content.Server.Speech.EntitySystems;
 
@@ -13,7 +13,7 @@ public sealed class LizardAccentSystem : EntitySystem
     private static readonly Regex RegexLowerEndX = new(@"\bx([\-|r|R]|\b)");
     private static readonly Regex RegexUpperEndX = new(@"\bX([\-|r|R]|\b)");
 
-    [Dependency] private readonly IRobustRandom _random = default!; // RU-Localization
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -36,7 +36,6 @@ public sealed class LizardAccentSystem : EntitySystem
         // eckS
         message = RegexUpperEndX.Replace(message, "ECKS$1");
 
-        // RU-Localization-Start
         // c => ссс
         message = Regex.Replace(
             message,
@@ -47,7 +46,7 @@ public sealed class LizardAccentSystem : EntitySystem
         message = Regex.Replace(
             message,
             "С+",
-            _random.Pick(new List<string>() { "СС", "ССС" })
+            _random.Pick(new List<string>() { "Сс", "Ссс" })
         );
         // з => ссс
         message = Regex.Replace(
@@ -59,7 +58,7 @@ public sealed class LizardAccentSystem : EntitySystem
         message = Regex.Replace(
             message,
             "З+",
-            _random.Pick(new List<string>() { "СС", "ССС" })
+            _random.Pick(new List<string>() { "Сс", "Ссс" })
         );
         // ш => шшш
         message = Regex.Replace(
@@ -71,7 +70,7 @@ public sealed class LizardAccentSystem : EntitySystem
         message = Regex.Replace(
             message,
             "Ш+",
-            _random.Pick(new List<string>() { "ШШ", "ШШШ" })
+            _random.Pick(new List<string>() { "Шш", "Шшш" })
         );
         // ч => щщщ
         message = Regex.Replace(
@@ -83,9 +82,9 @@ public sealed class LizardAccentSystem : EntitySystem
         message = Regex.Replace(
             message,
             "Ч+",
-            _random.Pick(new List<string>() { "ЩЩ", "ЩЩЩ" })
+            _random.Pick(new List<string>() { "Щщ", "Щщщ" })
         );
-        // RU-Localization-End
+
         args.Message = message;
     }
 }

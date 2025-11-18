@@ -1,6 +1,6 @@
 ## Entity
 
-chem-master-component-activate-no-hands = У вас нет рук.
+chem-master-component-activate-no-hands = У Вас нет рук.
 chem-master-component-cannot-put-entity-message = Вы не можете поместить это в ХимМастер!
 
 ## Bound UI
@@ -30,7 +30,7 @@ chem-master-window-dose-label = Дозировка (ед.):
 chem-master-window-create-button = Создать
 chem-master-window-bottles-label = Бутылочки:
 chem-master-window-unknown-reagent-text = Неизвестный реагент
-chem-master-window-sort-type-none = Сорт. по: Сначала старые
-chem-master-window-sort-type-alphabetical = Сорт. по: По алфавиту
-chem-master-window-sort-type-quantity = Сорт. по: Количество
-chem-master-window-sort-type-latest = Сорт. по: Сначала новые
+chem-master-window-sort-type-none = Сортировать по: Давним
+chem-master-window-sort-type-alphabetical = Сортировать по: Алфавиту
+chem-master-window-sort-type-quantity = Сортировать по: Количеству
+chem-master-window-sort-type-latest = Сортировать по: Новым

@@ -1,5 +1,5 @@
 ent-MachineParticleAcceleratorEndCapCircuitboard = плата торцевой заглушки УЧ
-    .desc = Машинная плата для торцевой заглушки ускорителя частиц.
+    .desc = Машинная плата для торцевой крышки ускорителя частиц.
 ent-MachineParticleAcceleratorFuelChamberCircuitboard = плата топливной камеры УЧ
     .desc = Машинная плата для топливной камеры ускорителя частиц.
 ent-MachineParticleAcceleratorPowerBoxCircuitboard = плата блока питания УЧ

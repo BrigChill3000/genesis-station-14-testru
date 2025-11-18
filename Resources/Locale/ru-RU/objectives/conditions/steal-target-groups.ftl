@@ -2,16 +2,16 @@
 steal-target-groups-hypospray = гипоспрей
 steal-target-groups-handheld-crew-monitor = ручной монитор экипажа
 steal-target-groups-clothing-outer-hardsuit-rd = экспериментальный исследовательский скафандр
-steal-target-groups-hand-teleporter = ручной телепортер
+steal-target-groups-hand-teleporter = ручной телепорт
 steal-target-groups-clothing-shoes-boots-mag-adv = продвинутые магнитные сапоги
 steal-target-groups-box-folder-qm-clipboard = цифровой планшет заявок
-steal-target-groups-clothing-hands-knuckledusters-qm = золотые кастеты
+steal-target-groups-clothing-hands-knuckledusters-qm = golden knuckledusters
 steal-target-groups-food-meat-corgi = первосортное мясо корги
 steal-target-groups-captain-id-card = ID-карта капитана
 steal-target-groups-jetpack-captain-filled = джетпак капитана
 steal-target-groups-weapon-antique-laser = антикварный лазерный пистолет
 steal-target-groups-nuke-disk = диск ядерной аутентификации
-steal-target-groups-weapon-energy-magnum = энергетический магнум
+steal-target-groups-weapon-energy-shot-gun = энергетический дробовик
 # Thief Collection
 steal-target-groups-figurines = фигурки
 steal-target-groups-heads-cloaks = плащи глав
@@ -22,7 +22,6 @@ steal-target-groups-encryption-keys = ключи шифрования
 steal-target-groups-technology-disks = технологические диски
 steal-target-groups-mail = почта
 steal-target-groups-id-cards = ID-карты
-steal-target-groups-officer-handguns = пистолет службы безопасности
 steal-target-groups-lamps = ЛАМПЫ
 # Thief single item
 steal-target-groups-forensic-scanner = криминалистический сканер
@@ -41,9 +40,7 @@ steal-target-groups-clothing-eyes-hud-beer = пивные очки
 steal-target-groups-bible = библия
 steal-target-groups-clothing-neck-goldmedal = золотая медаль мастерства экипажа
 steal-target-groups-clothing-neck-clownmedal = медаль клоуна
-steal-target-groups-wanted-list-cartridge = картридж Список разыскиваемых
-steal-target-groups-belt-ce = пояс для инструментов старшего инженера
-steal-target-groups-captain-sword = сабля капитана
+steal-target-groups-wanted-list-cartridge = картридж список разыскиваемых
 # Thief structures
 steal-target-groups-teg = часть термоэлектрического генератора
 steal-target-groups-freezer-heater = нагреватель или охладитель

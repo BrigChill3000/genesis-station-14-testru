@@ -25,7 +25,7 @@ namespace Content.Shared.Preferences
     [Serializable, NetSerializable]
     public sealed partial class HumanoidCharacterProfile : ICharacterProfile
     {
-        private static readonly Regex RestrictedNameRegex = new("[^А-Яа-яёЁ0-9' -]"); // RU-Localization
+        private static readonly Regex RestrictedNameRegex = new("[^А-Яа-яёЁ0-9' -]"); // Starshine-Localization
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
 
         /// <summary>
@@ -205,7 +205,6 @@ namespace Content.Shared.Preferences
             return new()
             {
                 Species = species,
-                Appearance = HumanoidCharacterAppearance.DefaultWithSpecies(species),
             };
         }
 

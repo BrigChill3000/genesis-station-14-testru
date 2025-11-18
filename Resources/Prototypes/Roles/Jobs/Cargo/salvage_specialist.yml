@@ -6,8 +6,10 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Cargo
-      time: 2.5h
-  icon: "JobIconShaftMiner"
+      time: 9000 # 2.5 hrs
+    - !type:OverallPlaytimeRequirement
+      time: 36000 #10 hrs
+  icon: "JobIconSalvage" # Genesis-Edit
   startingGear: SalvageSpecialistGear
   supervisors: job-supervisors-qm
   access:
